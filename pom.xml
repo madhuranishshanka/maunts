@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.devspace</groupId>
+    <artifactId>mounts</artifactId>
+    <packaging>pom</packaging>
+    <version>1.0-SNAPSHOT</version>
+    <name>Mounts</name>
+
+    <organization>
+        <name>Devspace Inc.,</name>
+        <url>http://localhost</url>
+    </organization>
+
+
+    <developers>
+        <developer>
+        </developer>
+    </developers>
+
+    <contributors>
+        <contributor>
+        </contributor>
+    </contributors>
+
+    <modules>
+        <module>business</module>
+        <module>application</module>
+        <module>infrastructure</module>
+    </modules>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.6</source>
+                    <target>1.6</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <profiles>
+    </profiles>
+
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <jboss.hibernate.version>3.2.1.ga</jboss.hibernate.version>
+        <org.springframework.version>2.5.6</org.springframework.version>
+    </properties>
+
+    <dependencies>
+        <!--Test dependencies-->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.10</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.derby</groupId>
+            <artifactId>derby</artifactId>
+            <version>10.6.1.0</version>
+        </dependency>
+
+        <!--Build dependencies-->
+        <!--Persistence dependencies-->
+        <dependency>
+            <groupId>javax.persistence</groupId>
+            <artifactId>persistence-api</artifactId>
+            <version>1.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate</artifactId>
+            <version>${jboss.hibernate.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-entitymanager</artifactId>
+            <version>${jboss.hibernate.version}</version>
+        </dependency>
+
+        <!--Service dependencies-->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring</artifactId>
+            <version>${org.springframework.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <version>${org.springframework.version}</version>
+        </dependency>
+
+
+    </dependencies>
+
+    <pluginRepositories>
+        <pluginRepository>
+            <id>MavenCentral</id>
+            <url>http://repo1.maven.org/maven2/</url>
+        </pluginRepository>
+        <pluginRepository>
+            <id>CodehausSnapshots</id>
+            <url>http://repository.codehaus.org/</url>
+        </pluginRepository>
+        <pluginRepository>
+            <id>maven-idea-plugin-repo</id>
+            <url>http://maven-idea-plugin.googlecode.com/svn/maven-repo</url>
+        </pluginRepository>
+    </pluginRepositories>
+
+    <repositories>
+        <repository>
+            <id>Moun`tsInternalReleases</id>
+            <name>Mounts Maven Internal Repository for Snapshots</name>
+            <url>http://localhost:8081/nexus/content/repositories/releases</url>
+        </repository>
+        <repository>
+            <id>MountsSnapshot</id>
+            <name>Mounts Internal Repository for Snapshots</name>
+            <url>http://localhost:8081/nexus/content/repositories/snapshots</url>
+        </repository>
+        <repository>
+            <id>JBoss</id>
+            <name>JBoss Repository</name>
+            <url>https://repository.jboss.org/nexus/content/groups/public</url>
+        </repository>
+        <repository>
+            <id>SpringSource</id>
+            <name>SpringSource Repository</name>
+            <url>http://repo.springsource.org/release</url>
+        </repository>
+        <repository>
+            <id>MavenCentral</id>
+            <name>Maven Central Repository</name>
+            <url>http://repo1.maven.org/maven2/</url>
+        </repository>
+        <repository>
+            <id>JavaNet</id>
+            <name>Java.Net Repository</name>
+            <url>http://download.java.net/maven/2/</url>
+        </repository>
+    </repositories>
+
+
+    <distributionManagement>
+        <repository>
+            <id>MountsInternalReleases</id>
+            <name>Mounts Internal Repository for Releases</name>
+            <url>http://localhost:8081/nexus/content/repositories/releases</url>
+        </repository>
+        <snapshotRepository>
+            <id>MountsSnapshot</id>
+            <name>Mounts Internal Repository for Snapshots</name>
+            <url>http://localhost:8081/nexus/content/repositories/snapshots</url>
+        </snapshotRepository>
+    </distributionManagement>
+
+    <scm>
+        <connection>
+            scm:git:https://github.com/madhuranishshanka/mounts.git
+        </connection>
+        <developerConnection>
+            scm:git:https://github.com/madhuranishshanka/mounts.git
+        </developerConnection>
+        <url>https://github.com/madhuranishshanka/mounts.git</url>
+    </scm>
+
+</project>
+

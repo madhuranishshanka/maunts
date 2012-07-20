@@ -1,0 +1,6 @@
+----------------------------------------------------------------
+2012-07-20 17:10:30.208 GMT:
+ Booting Derby version The Apache Software Foundation - Apache Derby - 10.6.1.0 - (938214): instance a816c00e-0138-a55e-7dd7-000002ea51c8 
+on database directory /home/madhura/sourcecode/Untitled_Folder/mounts/target/database/message   with class loader sun.misc.Launcher$AppClassLoader@16f0472
+
+Database Class Loader started - derby.database.classpath=''
