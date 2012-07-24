@@ -1,5 +1,7 @@
 package com.devspace.reservation.repository.impl;
 
+import com.devspace.logging.aspect.Log;
+import com.devspace.logging.domain.LogLevel;
 import com.devspace.persistence.domain.Entity;
 import com.devspace.reservation.domain.Room;
 import com.devspace.reservation.repository.RoomRepository;
@@ -11,8 +13,7 @@ import org.springframework.stereotype.Repository;
  */
 @Repository("roomRepository")
 public class RoomRepositoryImpl<T extends Entity> extends BaseRepositoryImpl<T> implements RoomRepository<T> {
-
-    @Override
+    @Log(LogLevel.TRACE)
     public Class<T> getClassType() {
         return (Class<T>) Room.class;
     }
