@@ -1,6 +1,5 @@
-package com.devspace.logging.aspect;
+package com.devspace.logging.domain;
 
-import com.devspace.logging.domain.LogLevel;
 import org.springframework.stereotype.Component;
 
 import java.lang.annotation.ElementType;
@@ -17,5 +16,6 @@ import java.lang.annotation.Target;
 @Component
 public @interface Log {
 
-    LogLevel value();
+    LogLevel logLevel() default LogLevel.DEBUG;
+    boolean logException() default true;
 }
