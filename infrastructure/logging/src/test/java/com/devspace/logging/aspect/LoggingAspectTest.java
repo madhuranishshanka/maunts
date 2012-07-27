@@ -25,38 +25,74 @@ import static org.junit.Assert.fail;
 @ContextConfiguration(locations = {"classpath:logging-context.xml"})
 public class LoggingAspectTest implements ApplicationContextAware {
     @Autowired
-    TestBean simpleBean;
+    TestBean testBean;
 
-    MockLogger mockLogger;
+    LoggingAspect loggingAspect;
 
     @Override
     public void setApplicationContext(ApplicationContext context) throws BeansException {
-        mockLogger = new MockLogger(MockLogLevel.ERROR);
-        LoggingAspect loggingAspect = (LoggingAspect) context.getBean("loggingAspect");
-        loggingAspect.setLogger(mockLogger);
+        loggingAspect = (LoggingAspect) context.getBean("loggingAspect");
     }
 
     @Test
-    public void testBeforeAfterLogging() {
-        List<String> errorLogMessages = mockLogger.getErrorLogMessages();
-        int prevCount = errorLogMessages.size();
-        simpleBean.getIntegerMax();
-        errorLogMessages = mockLogger.getErrorLogMessages();
-        int newCount = errorLogMessages.size();
+    public void testErrorLoggingWithLogLevelError() {
+        MockLogger mockLogger = new MockLogger(MockLogLevel.ERROR);
+        loggingAspect.setLogger(mockLogger);
+
+        List<String> logMessages = mockLogger.getErrorLogMessages();
+        int prevCount = logMessages.size();
+
+        testBean.logLevelErrorMethod();
+
+        logMessages = mockLogger.getErrorLogMessages();
+        int newCount = logMessages.size();
+        assertEquals(2, newCount - prevCount);
+    }
+
+    @Test
+    public void testInfoLoggingWithLogLevelError() {
+        MockLogger mockLogger = new MockLogger(MockLogLevel.ERROR);
+        loggingAspect.setLogger(mockLogger);
+
+        List<String> logMessages = mockLogger.getInfoLogMessages();
+        int prevCount = logMessages.size();
+
+        testBean.logLevelInfoMethod();
+
+        logMessages = mockLogger.getInfoLogMessages();
+        int newCount = logMessages.size();
+        assertEquals(0, newCount - prevCount);
+    }
+
+    @Test
+    public void testInfoLoggingWithLogLevelInfo() {
+        MockLogger mockLogger = new MockLogger(MockLogLevel.INFO);
+        loggingAspect.setLogger(mockLogger);
+
+        List<String> logMessages = mockLogger.getInfoLogMessages();
+        int prevCount = logMessages.size();
+
+        testBean.logLevelInfoMethod();
+
+        logMessages = mockLogger.getInfoLogMessages();
+        int newCount = logMessages.size();
         assertEquals(2, newCount - prevCount);
     }
 
     @Test
     public void testExceptionLogging() {
-        List<String> errorLogMessages = mockLogger.getErrorLogMessages();
-        int prevCount = errorLogMessages.size();
+        MockLogger mockLogger = new MockLogger(MockLogLevel.ERROR);
+        loggingAspect.setLogger(mockLogger);
+
+        List<String> logMessages = mockLogger.getErrorLogMessages();
+        int prevCount = logMessages.size();
         try {
-            simpleBean.throwException();
+            testBean.throwException();
             fail("An Exception should be thrown");
         } catch (Exception e) {
         }
-        errorLogMessages = mockLogger.getErrorLogMessages();
-        int newCount = errorLogMessages.size();
+        logMessages = mockLogger.getErrorLogMessages();
+        int newCount = logMessages.size();
         assertEquals(2, newCount - prevCount);
     }
 }

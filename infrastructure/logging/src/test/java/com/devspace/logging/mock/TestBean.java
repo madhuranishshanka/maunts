@@ -12,8 +12,11 @@ import org.springframework.stereotype.Component;
 public class TestBean {
 
     @Log(logLevel = LogLevel.ERROR)
-    public int getIntegerMax(){
-        return Integer.MAX_VALUE;
+    public void logLevelErrorMethod(){
+    }
+
+    @Log(logLevel = LogLevel.INFO)
+    public void logLevelInfoMethod(){
     }
 
     @Log(logLevel = LogLevel.ERROR)
