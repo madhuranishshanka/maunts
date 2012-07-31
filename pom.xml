@@ -7,15 +7,39 @@
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
     <name>Mounts</name>
+    <description>The ultimate hotel reservation system</description>
+
 
     <organization>
         <name>Devspace Inc.,</name>
         <url>http://localhost</url>
     </organization>
 
+    <issueManagement>
+        <system>Bugzilla</system>
+        <url>https://bugzilla.wakaleo.com/</url>
+    </issueManagement>
+
+    <!--<ciManagement>-->
+    <!--<system>Continuum</system>-->
+    <!--<url>http://integrationserver.wakaleo.com/continuum</url>-->
+    <!--<notifiers>-->
+    <!--<notifier>-->
+    <!--<type>mail</type>-->
+    <!--<address>duke@wakaleo.com</address>-->
+    <!--</notifier>-->
+    <!--</notifiers>-->
+    <!--</ciManagement>-->
 
     <developers>
         <developer>
+            <id>madhura</id>
+            <name>Madhura Nishshanka</name>
+            <email>madhura.nishshanka@gmail.com</email>
+            <roles>
+                <role>Architect</role>
+            </roles>
+            <organization>devspace.com</organization>
         </developer>
     </developers>
 
@@ -38,6 +62,15 @@
                 <configuration>
                     <source>1.6</source>
                     <target>1.6</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.12</version>
+                <configuration>
+                    <parallel>methods</parallel>
+                    <threadCount>3</threadCount>
                 </configuration>
             </plugin>
         </plugins>
@@ -200,6 +233,10 @@
             <name>Mounts Internal Repository for Snapshots</name>
             <url>http://localhost:8081/nexus/content/repositories/snapshots</url>
         </snapshotRepository>
+        <site>
+            <id>www.devspace.com</id>
+            <url>scp://http://localhost:8080/examples/</url>
+        </site>
     </distributionManagement>
 
     <scm>
