@@ -15,6 +15,7 @@
         <url>http://localhost</url>
     </organization>
 
+
     <issueManagement>
         <system>Bugzilla</system>
         <url>https://bugzilla.wakaleo.com/</url>
