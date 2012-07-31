@@ -3,10 +3,10 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.devspace</groupId>
-    <artifactId>mounts</artifactId>
+    <artifactId>maunts</artifactId>
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
-    <name>Mounts</name>
+    <name>Maunts</name>
     <description>The ultimate hotel reservation system</description>
 
 
@@ -190,13 +190,13 @@
 
     <repositories>
         <repository>
-            <id>MountsInternalReleases</id>
-            <name>Mounts Maven Internal Repository for Snapshots</name>
+            <id>MauntsInternalReleases</id>
+            <name>Maunts Maven Internal Repository for Snapshots</name>
             <url>http://localhost:8081/nexus/content/repositories/releases</url>
         </repository>
         <repository>
-            <id>MountsSnapshot</id>
-            <name>Mounts Internal Repository for Snapshots</name>
+            <id>MauntsSnapshot</id>
+            <name>Maunts Internal Repository for Snapshots</name>
             <url>http://localhost:8081/nexus/content/repositories/snapshots</url>
         </repository>
         <repository>
@@ -224,13 +224,13 @@
 
     <distributionManagement>
         <repository>
-            <id>MountsInternalReleases</id>
-            <name>Mounts Internal Repository for Releases</name>
+            <id>MauntsInternalReleases</id>
+            <name>Maunts Internal Repository for Releases</name>
             <url>http://localhost:8081/nexus/content/repositories/releases</url>
         </repository>
         <snapshotRepository>
-            <id>MountsSnapshot</id>
-            <name>Mounts Internal Repository for Snapshots</name>
+            <id>MauntsSnapshot</id>
+            <name>Maunts Internal Repository for Snapshots</name>
             <url>http://localhost:8081/nexus/content/repositories/snapshots</url>
         </snapshotRepository>
         <site>
@@ -241,12 +241,12 @@
 
     <scm>
         <connection>
-            scm:git:https://github.com/madhuranishshanka/mounts.git
+            scm:git:https://github.com/madhuranishshanka/maunts.git
         </connection>
         <developerConnection>
-            scm:git:https://github.com/madhuranishshanka/mounts.git
+            scm:git:https://github.com/madhuranishshanka/maunts.git
         </developerConnection>
-        <url>https://github.com/madhuranishshanka/mounts.git</url>
+        <url>https://github.com/madhuranishshanka/maunts.git</url>
     </scm>
 
 </project>
