@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Mounts">
+    <skin>
+        <groupId>org.apache.maven.skins</groupId>
+        <artifactId>maven-classic-skin</artifactId>
+        <version>1.0</version>
+    </skin>
+    <body>
+        <links>
+            <item name="${project.name}" href="${project.url}"/>
+        </links>
+
+        <menu ref="parent" />
+        <menu ref="modules" />
+        <menu ref="reports" />
+    </body>
+</project>
