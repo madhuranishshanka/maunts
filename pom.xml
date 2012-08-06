@@ -79,25 +79,17 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <org.springframework.version>3.0.0.M2</org.springframework.version>
+        <org.springframework.version>3.1.2.RELEASE</org.springframework.version>
         <org.aspectj.version>1.6.3.RELEASE</org.aspectj.version>
     </properties>
 
     <dependencies>
-
-
         <!--Test dependencies-->
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.10</version>
             <scope>test</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>org.apache.derby</groupId>
-            <artifactId>derby</artifactId>
-            <version>10.6.1.0</version>
         </dependency>
 
         <!--Build dependencies-->
@@ -118,6 +110,14 @@
             </exclusions>
         </dependency>
 
+
+        <dependency>
+            <groupId>javax.transaction</groupId>
+            <artifactId>jta</artifactId>
+            <version>1.1</version>
+        </dependency>
+
+        <!--Dependency to support spring-->
         <dependency>
             <groupId>org.objectweb.asm</groupId>
             <artifactId>com.springsource.org.objectweb.asm</artifactId>
@@ -129,13 +129,107 @@
             <version>2.2.3</version>
         </dependency>
 
+        <!--<dependency>-->
+        <!--<groupId>javax.transaction</groupId>-->
+        <!--<artifactId>com.springsource.javax.transaction</artifactId>-->
+        <!--<version>1.1.0</version>-->
+        <!--</dependency>-->
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>${org.springframework.version}</version>
+        </dependency>
+
+        <!--<dependency>-->
+            <!--<groupId>org.springframework</groupId>-->
+            <!--<artifactId>spring-core</artifactId>-->
+            <!--<version>3.1.2.RELEASE</version>-->
+        <!--</dependency>-->
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-jdbc</artifactId>
+            <version>${org.springframework.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-orm</artifactId>
+            <version>${org.springframework.version}</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <version>${org.springframework.version}</version>
+        </dependency>
+
+        <!--spring dependencies-->
+        <!--<dependency>-->
+        <!--<groupId>org.springframework</groupId>-->
+        <!--<artifactId>org.springframework.core</artifactId>-->
+        <!--<version>${org.springframework.version}</version>-->
+        <!--</dependency>-->
+        <!--<dependency>-->
+        <!--<groupId>org.springframework</groupId>-->
+        <!--<artifactId>org.springframework.jdbc</artifactId>-->
+        <!--<version>${org.springframework.version}</version>-->
+        <!--</dependency>-->
+        <!--<dependency>-->
+        <!--<groupId>org.springframework</groupId>-->
+        <!--<artifactId>org.springframework.context</artifactId>-->
+        <!--<version>${org.springframework.version}</version>-->
+        <!--</dependency>-->
+        <!--<dependency>-->
+        <!--<groupId>org.springframework</groupId>-->
+        <!--<artifactId>org.springframework.aop</artifactId>-->
+        <!--<version>${org.springframework.version}</version>-->
+        <!--</dependency>-->
+        <!--<dependency>-->
+        <!--<groupId>org.springframework</groupId>-->
+        <!--<artifactId>org.springframework.aspects</artifactId>-->
+        <!--<version>${org.springframework.version}</version>-->
+        <!--</dependency>-->
+        <!--<dependency>-->
+        <!--<groupId>org.springframework</groupId>-->
+        <!--<artifactId>org.springframework.orm</artifactId>-->
+        <!--<version>${org.springframework.version}</version>-->
+        <!--</dependency>-->
+        <!--<dependency>-->
+        <!--<groupId>org.springframework</groupId>-->
+        <!--<artifactId>org.springframework.transaction</artifactId>-->
+        <!--<version>${org.springframework.version}</version>-->
+        <!--</dependency>-->
+
+        <!--<dependency>-->
+        <!--<groupId>org.springframework</groupId>-->
+        <!--<artifactId>org.springframework.test</artifactId>-->
+        <!--<version>${org.springframework.version}</version>-->
+        <!--<scope>test</scope>-->
+        <!--</dependency>-->
+
+        <!--aspectj dependencies-->
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>com.springsource.org.aspectj.tools</artifactId>
+            <version>${org.aspectj.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>com.springsource.org.aspectj.runtime</artifactId>
+            <version>${org.aspectj.version}</version>
+        </dependency>
+
+
         <!--Persistence dependencies-->
         <dependency>
             <groupId>javax.persistence</groupId>
             <artifactId>persistence-api</artifactId>
             <version>1.0</version>
         </dependency>
-
 
         <dependency>
             <groupId>org.hibernate</groupId>
@@ -153,72 +247,29 @@
             <version>3.3.2.GA</version>
         </dependency>
 
-        <dependency>
-            <groupId>javax.transaction</groupId>
-            <artifactId>com.springsource.javax.transaction</artifactId>
-            <version>1.1.0</version>
-        </dependency>
-        <!--Service dependencies-->
-
-        <!--spring dependencies-->
-
-
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>org.springframework.core</artifactId>
-            <version>${org.springframework.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>org.springframework.test</artifactId>
-            <version>${org.springframework.version}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>org.springframework.jdbc</artifactId>
-            <version>${org.springframework.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>org.springframework.context</artifactId>
-            <version>${org.springframework.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>org.springframework.aop</artifactId>
-            <version>${org.springframework.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>org.springframework.aspects</artifactId>
-            <version>${org.springframework.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>org.springframework.orm</artifactId>
-            <version>${org.springframework.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>org.springframework.transaction</artifactId>
-            <version>${org.springframework.version}</version>
-        </dependency>
+        <!--<dependency>-->
+        <!--<groupId>org.hibernate.javax.persistence</groupId>-->
+        <!--<artifactId>hibernate-jpa-2.0-api</artifactId>-->
+        <!--<version>1.0.0.Final</version>-->
+        <!--</dependency>-->
+        <!--<dependency>-->
+        <!--<groupId>org.hibernate</groupId>-->
+        <!--<artifactId>hibernate-entitymanager</artifactId>-->
+        <!--<version>3.6.5.Final</version>-->
+        <!--</dependency>-->
 
 
-        <!--aspectj dependencies-->
-        <dependency>
-            <groupId>org.aspectj</groupId>
-            <artifactId>com.springsource.org.aspectj.tools</artifactId>
-            <version>${org.aspectj.version}</version>
-        </dependency>
+        <!--<dependency>-->
+        <!--<groupId>org.apache.derby</groupId>-->
+        <!--<artifactId>derby</artifactId>-->
+        <!--<version>10.6.1.0</version>-->
+        <!--</dependency>-->
 
         <dependency>
-            <groupId>org.aspectj</groupId>
-            <artifactId>com.springsource.org.aspectj.runtime</artifactId>
-            <version>${org.aspectj.version}</version>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>5.1.21</version>
         </dependency>
-
 
     </dependencies>
 
