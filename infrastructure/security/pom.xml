@@ -11,7 +11,7 @@
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <name>logging</name>
+    <name>security</name>
     <url>http://maven.apache.org</url>
 
     <properties>
@@ -25,12 +25,6 @@
             <artifactId>persistence</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
-
-        <!--<dependency>-->
-            <!--<groupId>org.springframework.security</groupId>-->
-            <!--<artifactId>spring-security-core</artifactId>-->
-            <!--<version>${spring-security.version}</version>-->
-        <!--</dependency>-->
 
         <dependency>
             <groupId>org.springframework.security</groupId>

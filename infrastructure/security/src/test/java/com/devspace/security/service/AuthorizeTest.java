@@ -5,6 +5,8 @@ import com.devspace.security.domain.LoginAccount;
 import com.devspace.security.domain.Role;
 import com.devspace.security.mock.TestBean;
 import com.devspace.security.service.impl.UserLoginDetailsServiceImpl;
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -33,34 +35,26 @@ import static org.junit.Assert.fail;
 @Transactional
 public class AuthorizeTest {
 
+    private String userName = "user";
+    private String password = "pass";
+    private String roleName = "GUEST";
+    private LoginAccount loginAccount = null;
+
     @Resource(name = "testBean")
     private TestBean testBean;
 
     @Resource(name = "loginAccountService")
     private LoginAccountService loginAccountService;
 
-
     @Resource(name = "userLoginDetailsService")
     private UserLoginDetailsServiceImpl userLoginDetailsService;
 
-    @Test
-    public void testPreAuthorize() {
-        String userName = "user";
-        String password = "pass";
-        createLoginAccount("GUEST", userName, password);
-        final UserDetails userDetails = userLoginDetailsService.loadUserByUsername(userName);
 
-        Authentication authentication = new UsernamePasswordAuthenticationToken(userName, password,userDetails.getAuthorities());
-        SecurityContextHolder.getContext().setAuthentication(authentication);
-        boolean securedMethod = testBean.isSecuredMethod();
-        assertTrue(securedMethod);
-    }
-
-    private LoginAccount createLoginAccount(String roleName, String userName, String password) {
+    @Before
+    public void setUp() {
         Set<Role> roles = new HashSet<Role>();
-
         Role guest = null;
-        LoginAccount loginAccount = null;
+
         try {
             guest = loginAccountService.createRole(roleName, "guest description");
             roles.add(guest);
@@ -68,6 +62,24 @@ public class AuthorizeTest {
         } catch (EntityNotFoundException e) {
             fail(e.getMessage());
         }
-        return loginAccount;
+    }
+
+    @After
+    public void tearDown() throws EntityNotFoundException {
+        loginAccountService.deleteLoginAccount(loginAccount.getId());
+        Set<Role> roles = loginAccount.getRoles();
+        loginAccountService.deleteRole(roles.iterator().next().getId());
+    }
+
+
+    @Test
+    public void testPreAuthorize() {
+
+        final UserDetails userDetails = userLoginDetailsService.loadUserByUsername(userName);
+
+        Authentication authentication = new UsernamePasswordAuthenticationToken(userName, password, userDetails.getAuthorities());
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+        boolean securedMethod = testBean.isSecuredMethod();
+        assertTrue(securedMethod);
     }
 }
