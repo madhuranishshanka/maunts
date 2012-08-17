@@ -15,8 +15,6 @@
 
     <import resource="security-context.xml"/>
 
-    <context:annotation-config/>
-    <context:component-scan base-package="com"/>
     <tx:annotation-driven/>
 
 </beans>

@@ -1,7 +1,7 @@
 package com.devspace.multitenancy.aspect;
 
+import com.devspace.multitenancy.domain.MultiTenancy;
 import com.devspace.multitenancy.domain.TenantContext;
-import com.devspace.multitenancy.domain.TenantEntity;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
@@ -16,7 +16,7 @@ import javax.persistence.EntityManager;
  */
 @Aspect
 @Component
-public class MultitenantAspect {
+public class MultiTenantAspect {
 
     @Before("execution(* javax.persistence.EntityManager.create*(..))")
     public void beforeQuery(JoinPoint joinPoint) throws Throwable {
@@ -27,11 +27,10 @@ public class MultitenantAspect {
 
     @Before("execution(* javax.persistence.EntityManager.persist(..))")
     public void beforeSave(JoinPoint joinPoint) throws Throwable {
-        EntityManager entityManager = (EntityManager) joinPoint.getTarget();
         Object[] args = joinPoint.getArgs();
         Object entity = args[0];
-        if (entity instanceof TenantEntity) {
-            ((TenantEntity) entity).setTenantId(TenantContext.getTenant());
+        if (entity instanceof MultiTenancy) {
+            ((MultiTenancy) entity).setTenantId(TenantContext.getTenant());
         }
     }
 }

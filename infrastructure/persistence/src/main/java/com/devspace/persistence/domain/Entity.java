@@ -1,5 +1,7 @@
 package com.devspace.persistence.domain;
 
+import com.devspace.multitenancy.domain.MultiTenancy;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -9,7 +11,7 @@ import java.io.Serializable;
  */
 
 @MappedSuperclass
-public class Entity<T> implements Serializable {
+public class Entity<T> extends MultiTenancy implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -54,4 +56,5 @@ public class Entity<T> implements Serializable {
         result = 31 * result + (int) (version ^ (version >>> 32));
         return result;
     }
+
 }

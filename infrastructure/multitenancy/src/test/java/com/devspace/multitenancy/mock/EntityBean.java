@@ -1,13 +1,20 @@
 package com.devspace.multitenancy.mock;
 
-import com.devspace.multitenancy.domain.TenantEntity;
+import com.devspace.multitenancy.domain.MultiTenancy;
+
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 /**
  * @author Madhura Nishshanka
  * @since 1.0
  */
 @javax.persistence.Entity
-public class EntityBean extends TenantEntity {
+public class EntityBean extends MultiTenancy{
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
 
     private String name;
 

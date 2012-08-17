@@ -1,8 +1,8 @@
 package com.devspace.persistence.repository;
 
 import com.devspace.persistence.exception.EntityNotFoundException;
-import com.devspace.persistence.mock.EntityBean;
-import com.devspace.persistence.mock.MockCrudRepositoryImpl;
+import com.devspace.persistence.dummy.DummyCrudRepositoryImpl;
+import com.devspace.persistence.dummy.DummyEntityBean;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
@@ -28,17 +28,17 @@ import static org.junit.Assert.*;
 public class CrudRepositoryTest {
 
 
-    @Resource(name = "crudRepository")
-    private MockCrudRepositoryImpl crudRepository;
+    @Resource(name = "dummyCrudRepository")
+    private DummyCrudRepositoryImpl crudRepository;
 
         @Test
     public void testRoomCrud() {
 
         String name = "entity Name";
         String updatedName = "Updated Economy class";
-        EntityBean persistedEntityBean = null;
+        DummyEntityBean persistedEntityBean = null;
 
-        EntityBean entityBean = new EntityBean();
+        DummyEntityBean entityBean = new DummyEntityBean();
         entityBean.setName(name);
 
         crudRepository.save(entityBean);

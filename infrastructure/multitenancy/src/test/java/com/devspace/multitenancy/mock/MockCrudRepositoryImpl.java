@@ -12,27 +12,23 @@ import java.util.List;
  * @since 1.0
  */
 @Repository("crudRepository")
-public class MockCrudRepositoryImpl extends com.devspace.persistence.repository.impl.CrudRepositoryImpl<EntityBean> {
+public class MockCrudRepositoryImpl {
 
     @PersistenceContext(name = "testMultitenancy")
     private EntityManager entityManager;
 
-    @Override
-    public EntityManager getEntityManager() {
 
-        return entityManager;
-    }
-    public void setEntityManager(EntityManager entityManager){
-
-    }
-    @Override
     public Class<EntityBean> getClassType() {
         return EntityBean.class;
     }
 
     public List<EntityBean> findAll() {
-        Query query = getEntityManager().createQuery("select o from EntityBean o");
+        Query query = entityManager.createQuery("select o from EntityBean o");
         List<EntityBean> resultList = query.getResultList();
         return resultList;
+    }
+
+    public void save(EntityBean entityBean) {
+        entityManager.persist(entityBean);
     }
 }

@@ -22,7 +22,7 @@ import static org.junit.Assert.assertEquals;
  * @since 1.0
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"classpath:multitenancy-context.xml"})
+@ContextConfiguration(locations = {"classpath:test-multitenancy-context.xml"})
 @TransactionConfiguration(transactionManager = "transactionManager", defaultRollback = false)
 @Transactional
 public class CrudRepositoryTest {

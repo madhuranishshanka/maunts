@@ -16,6 +16,15 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
+          <root url="jar://$MAVEN_REPOSITORY$/org/aspectj/com.springsource.org.aspectj.runtime/1.6.3.RELEASE/com.springsource.org.aspectj.runtime-1.6.3.RELEASE.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
           <root url="jar://$MAVEN_REPOSITORY$/junit/junit/4.10/junit-4.10.jar!/" />
         </CLASSES>
         <JAVADOC />
@@ -26,15 +35,6 @@
       <library>
         <CLASSES>
           <root url="jar://$MAVEN_REPOSITORY$/org/hamcrest/hamcrest-core/1.1/hamcrest-core-1.1.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library>
-        <CLASSES>
-          <root url="jar://$MAVEN_REPOSITORY$/org/aspectj/com.springsource.org.aspectj.runtime/1.6.3.RELEASE/com.springsource.org.aspectj.runtime-1.6.3.RELEASE.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -131,25 +131,6 @@
       </library>
     </orderEntry>
     <orderEntry type="module" module-name="multitenancy" />
-    <orderEntry type="module" module-name="persistence" />
-    <orderEntry type="module-library">
-      <library>
-        <CLASSES>
-          <root url="jar://$MAVEN_REPOSITORY$/org/hibernate/hibernate-entitymanager/4.1.5.Final/hibernate-entitymanager-4.1.5.Final.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library>
-        <CLASSES>
-          <root url="jar://$MAVEN_REPOSITORY$/org/jboss/logging/jboss-logging/3.1.0.GA/jboss-logging-3.1.0.GA.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
     <orderEntry type="module-library">
       <library>
         <CLASSES>
@@ -163,6 +144,15 @@
       <library>
         <CLASSES>
           <root url="jar://$MAVEN_REPOSITORY$/antlr/antlr/2.7.7/antlr-2.7.7.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MAVEN_REPOSITORY$/org/jboss/logging/jboss-logging/3.1.0.GA/jboss-logging-3.1.0.GA.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -208,6 +198,15 @@
       <library>
         <CLASSES>
           <root url="jar://$MAVEN_REPOSITORY$/org/hibernate/common/hibernate-commons-annotations/4.0.1.Final/hibernate-commons-annotations-4.0.1.Final.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MAVEN_REPOSITORY$/org/hibernate/hibernate-entitymanager/4.1.5.Final/hibernate-entitymanager-4.1.5.Final.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -348,6 +347,7 @@
         <SOURCES />
       </library>
     </orderEntry>
+    <orderEntry type="module" module-name="persistence" />
   </component>
 </module>
 

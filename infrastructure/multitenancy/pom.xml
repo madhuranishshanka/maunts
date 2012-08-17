@@ -16,6 +16,7 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <org.hibernate.version>4.1.5.Final</org.hibernate.version>
     </properties>
 
     <build>
@@ -45,13 +46,17 @@
         </plugins>
     </build>
 
-
     <dependencies>
         <dependency>
-            <groupId>com.devspace</groupId>
-            <artifactId>persistence</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>${org.hibernate.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-entitymanager</artifactId>
+            <version>${org.hibernate.version}</version>
         </dependency>
     </dependencies>
-
 </project>
