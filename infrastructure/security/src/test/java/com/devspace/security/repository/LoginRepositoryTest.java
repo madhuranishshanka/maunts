@@ -1,5 +1,6 @@
 package com.devspace.security.repository;
 
+import com.devspace.multitenancy.domain.TenantContext;
 import com.devspace.persistence.exception.EntityNotFoundException;
 import com.devspace.security.domain.LoginAccount;
 import org.junit.Test;
@@ -29,6 +30,8 @@ public class LoginRepositoryTest{
 
     @Test
     public void testFindByUserName() {
+        TenantContext.setTenant("tenant1");
+
         String userName = "myUserName";
         LoginAccount loginAccount = new LoginAccount();
         loginAccount.setPassword("myPassword");

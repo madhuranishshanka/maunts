@@ -1,5 +1,6 @@
 package com.devspace.security.repository;
 
+import com.devspace.multitenancy.domain.TenantContext;
 import com.devspace.persistence.exception.EntityNotFoundException;
 import com.devspace.security.domain.Role;
 import org.junit.Test;
@@ -30,6 +31,8 @@ public class RoleRepositoryTest {
 
     @Test
     public void testFindByUserName() {
+        TenantContext.setTenant("tenant1");
+
         String roleName = "guest";
         Role guestRole = new Role();
         guestRole.setName(roleName);

@@ -96,6 +96,7 @@
         </dependency>
 
         <!--Build dependencies-->
+
         <!--Logging dependencies-->
         <dependency>
             <groupId>log4j</groupId>
@@ -113,6 +114,7 @@
             </exclusions>
         </dependency>
 
+        <!--specifications dependencies-->
 
         <dependency>
             <groupId>javax.transaction</groupId>
@@ -120,6 +122,19 @@
             <version>1.1</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.hibernate.java-persistence</groupId>
+            <artifactId>jpa-api</artifactId>
+            <version>2.0-cr-1</version>
+        </dependency>
+        <!--spring framework dependencies-->
+
+        <dependency>
+            <groupId>cglib</groupId>
+            <artifactId>cglib</artifactId>
+            <version>2.2.2</version>
+            <scope>runtime</scope>
+        </dependency>
 
         <dependency>
             <groupId>org.springframework</groupId>
@@ -160,33 +175,7 @@
             <version>${org.aspectj.version}</version>
         </dependency>
 
-
-        <!--Persistence dependencies-->
-        <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-entitymanager</artifactId>
-            <version>4.1.5.Final</version>
-        </dependency>
-
-        <dependency>
-            <groupId>cglib</groupId>
-            <artifactId>cglib</artifactId>
-            <version>2.2.2</version>
-            <scope>runtime</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-core</artifactId>
-            <version>4.1.5.Final</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.hibernate.java-persistence</groupId>
-            <artifactId>jpa-api</artifactId>
-            <version>2.0-cr-1</version>
-        </dependency>
-
+        <!--database dependencies-->
 
         <!--<dependency>-->
         <!--<groupId>org.apache.derby</groupId>-->

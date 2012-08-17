@@ -1,6 +1,6 @@
 package com.devspace.security.domain;
 
-import com.devspace.persistence.domain.Entity;
+import com.devspace.multitenancy.domain.TenantEntity;
 
 import javax.persistence.OneToMany;
 import java.util.HashSet;
@@ -11,7 +11,7 @@ import java.util.Set;
  * @since 1.0
  */
 @javax.persistence.Entity
-public class LoginAccount extends Entity {
+public class LoginAccount extends TenantEntity {
 
     private String userName;
     private String password;

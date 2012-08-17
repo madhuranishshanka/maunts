@@ -1,5 +1,6 @@
 package com.devspace.multitenancy;
 
+import com.devspace.multitenancy.domain.TenantContext;
 import com.devspace.multitenancy.mock.EntityBean;
 import com.devspace.multitenancy.mock.MockCrudRepositoryImpl;
 import org.junit.Test;
@@ -13,7 +14,6 @@ import javax.annotation.Resource;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
 //import org.hibernate.service.ServiceRegistry;
 
@@ -35,17 +35,18 @@ public class CrudRepositoryTest {
     @Test
     public void testMultitenancy() {
 
+        TenantContext.setTenant("TID1");
         EntityBean entityBean1 = new EntityBean();
-        entityBean1.setTenantId("TID1");
         entityBean1.setName("laptop 1");
+        crudRepository.save(entityBean1);
 
+        TenantContext.setTenant("TID2");
         EntityBean entityBean2 = new EntityBean();
-        entityBean2.setTenantId("TID2");
         entityBean2.setName("laptop 2");
 
-        crudRepository.save(entityBean1);
         crudRepository.save(entityBean2);
 
+        TenantContext.setTenant("TID2");
         List<EntityBean> all = crudRepository.findAll();
 
 

@@ -1,9 +1,9 @@
 package com.devspace.security.service;
 
+import com.devspace.multitenancy.domain.TenantContext;
 import com.devspace.persistence.exception.EntityNotFoundException;
 import com.devspace.security.domain.LoginAccount;
 import com.devspace.security.domain.Role;
-import com.devspace.security.repository.LoginAccountRepository;
 import com.devspace.security.service.impl.UserLoginDetailsServiceImpl;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -38,8 +38,11 @@ public class UserLoginDetailsServiceTest {
     @Resource(name = "userLoginDetailsService")
     private UserLoginDetailsServiceImpl userLoginDetailsService;
 
-    @Test
+
+     @Test
     public void testFindByUserName() {
+        TenantContext.setTenant("tenant1");
+
         Set<Role> roles = new HashSet<Role>();
 
         Role guest = null;

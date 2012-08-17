@@ -1,5 +1,7 @@
 package com.devspace.multitenancy.aspect;
 
+import com.devspace.multitenancy.domain.TenantContext;
+import com.devspace.multitenancy.domain.TenantEntity;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
@@ -17,10 +19,19 @@ import javax.persistence.EntityManager;
 public class MultitenantAspect {
 
     @Before("execution(* javax.persistence.EntityManager.create*(..))")
-    public void before(JoinPoint joinPoint) throws Throwable {
+    public void beforeQuery(JoinPoint joinPoint) throws Throwable {
         EntityManager entityManager = (EntityManager) joinPoint.getTarget();
         Session session = entityManager.unwrap(Session.class);
-        session.enableFilter("tenantFilter").setParameter("tenantId", "TID1");
-        System.out.println("done");
+        session.enableFilter("tenantFilter").setParameter("tenantId", TenantContext.getTenant());
+    }
+
+    @Before("execution(* javax.persistence.EntityManager.persist(..))")
+    public void beforeSave(JoinPoint joinPoint) throws Throwable {
+        EntityManager entityManager = (EntityManager) joinPoint.getTarget();
+        Object[] args = joinPoint.getArgs();
+        Object entity = args[0];
+        if (entity instanceof TenantEntity) {
+            ((TenantEntity) entity).setTenantId(TenantContext.getTenant());
+        }
     }
 }

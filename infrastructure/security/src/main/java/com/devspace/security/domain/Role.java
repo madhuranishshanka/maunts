@@ -1,13 +1,13 @@
 package com.devspace.security.domain;
 
-import com.devspace.persistence.domain.Entity;
+import com.devspace.multitenancy.domain.TenantEntity;
 
 /**
  * @author Madhura Nishshanka
  * @since 1.0
  */
 @javax.persistence.Entity
-public class Role extends Entity {
+public class Role extends TenantEntity {
 
     private String name;
     private String description;

@@ -7,5 +7,8 @@
 
     <persistence-unit name="security" transaction-type="RESOURCE_LOCAL">
         <class>com.devspace.security.domain.LoginAccount</class>
+        <properties>
+            <property name="hibernate.show_sql" value="true"/>
+        </properties>
     </persistence-unit>
 </persistence>

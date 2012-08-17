@@ -1,5 +1,6 @@
 package com.devspace.security.service;
 
+import com.devspace.multitenancy.domain.TenantContext;
 import com.devspace.persistence.exception.EntityNotFoundException;
 import com.devspace.security.domain.LoginAccount;
 import com.devspace.security.domain.Role;
@@ -49,12 +50,14 @@ public class AuthorizeTest {
     @Resource(name = "userLoginDetailsService")
     private UserLoginDetailsServiceImpl userLoginDetailsService;
 
+    private String tenantId = "tenant1";
 
     @Before
     public void setUp() {
+
+        TenantContext.setTenant(tenantId);
         Set<Role> roles = new HashSet<Role>();
         Role guest = null;
-
         try {
             guest = loginAccountService.createRole(roleName, "guest description");
             roles.add(guest);
@@ -74,7 +77,7 @@ public class AuthorizeTest {
 
     @Test
     public void testPreAuthorize() {
-
+        TenantContext.setTenant(tenantId);
         final UserDetails userDetails = userLoginDetailsService.loadUserByUsername(userName);
 
         Authentication authentication = new UsernamePasswordAuthenticationToken(userName, password, userDetails.getAuthorities());
