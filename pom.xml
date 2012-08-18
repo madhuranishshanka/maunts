@@ -83,7 +83,7 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <org.springframework.version>3.1.2.RELEASE</org.springframework.version>
-        <org.aspectj.version>1.6.3.RELEASE</org.aspectj.version>
+        <org.aspectj.version>1.6.11.RELEASE</org.aspectj.version>
     </properties>
 
     <dependencies>
@@ -165,13 +165,13 @@
         <!--aspectj dependencies-->
         <dependency>
             <groupId>org.aspectj</groupId>
-            <artifactId>com.springsource.org.aspectj.tools</artifactId>
+            <artifactId>aspectjtools</artifactId>
             <version>${org.aspectj.version}</version>
         </dependency>
 
         <dependency>
             <groupId>org.aspectj</groupId>
-            <artifactId>com.springsource.org.aspectj.runtime</artifactId>
+            <artifactId>aspectjrt</artifactId>
             <version>${org.aspectj.version}</version>
         </dependency>
 
