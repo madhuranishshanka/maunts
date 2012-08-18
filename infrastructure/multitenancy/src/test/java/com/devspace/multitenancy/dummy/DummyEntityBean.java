@@ -1,4 +1,4 @@
-package com.devspace.multitenancy.mock;
+package com.devspace.multitenancy.dummy;
 
 import com.devspace.multitenancy.domain.MultiTenancy;
 
@@ -11,7 +11,7 @@ import javax.persistence.Id;
  * @since 1.0
  */
 @javax.persistence.Entity
-public class EntityBean extends MultiTenancy{
+public class DummyEntityBean extends MultiTenancy{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -32,7 +32,7 @@ public class EntityBean extends MultiTenancy{
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
 
-        EntityBean that = (EntityBean) o;
+        DummyEntityBean that = (DummyEntityBean) o;
 
         if (name != null ? !name.equals(that.name) : that.name != null) return false;
 

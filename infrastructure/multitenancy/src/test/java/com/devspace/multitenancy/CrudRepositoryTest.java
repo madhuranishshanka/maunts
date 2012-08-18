@@ -1,8 +1,8 @@
 package com.devspace.multitenancy;
 
 import com.devspace.multitenancy.domain.TenantContext;
-import com.devspace.multitenancy.mock.EntityBean;
-import com.devspace.multitenancy.mock.MockCrudRepositoryImpl;
+import com.devspace.multitenancy.dummy.DummyCrudRepositoryImpl;
+import com.devspace.multitenancy.dummy.DummyEntityBean;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
@@ -28,26 +28,26 @@ import static org.junit.Assert.assertEquals;
 public class CrudRepositoryTest {
 
 
-    @Resource(name = "crudRepository")
-    private MockCrudRepositoryImpl crudRepository;
+    @Resource(name = "dummyCrudRepository")
+    private DummyCrudRepositoryImpl crudRepository;
 
 
     @Test
     public void testMultitenancy() {
 
         TenantContext.setTenant("TID1");
-        EntityBean entityBean1 = new EntityBean();
+        DummyEntityBean entityBean1 = new DummyEntityBean();
         entityBean1.setName("laptop 1");
         crudRepository.save(entityBean1);
 
         TenantContext.setTenant("TID2");
-        EntityBean entityBean2 = new EntityBean();
+        DummyEntityBean entityBean2 = new DummyEntityBean();
         entityBean2.setName("laptop 2");
 
         crudRepository.save(entityBean2);
 
         TenantContext.setTenant("TID2");
-        List<EntityBean> all = crudRepository.findAll();
+        List<DummyEntityBean> all = crudRepository.findAll();
 
 
         assertEquals(1, all.size());

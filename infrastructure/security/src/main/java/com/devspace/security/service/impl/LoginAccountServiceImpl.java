@@ -1,5 +1,7 @@
 package com.devspace.security.service.impl;
 
+import com.devspace.logging.domain.Log;
+import com.devspace.logging.domain.LogLevel;
 import com.devspace.persistence.exception.EntityNotFoundException;
 import com.devspace.security.domain.LoginAccount;
 import com.devspace.security.domain.Role;
@@ -24,6 +26,7 @@ public class LoginAccountServiceImpl implements LoginAccountService {
     @Resource(name = "loginAccountRepository")
     private LoginAccountRepository loginAccountRepository;
 
+    @Log(logLevel = LogLevel.DEBUG)
     public LoginAccount createLoginAccount(String userName, String password, Set<Role> roles) throws EntityNotFoundException {
         LoginAccount loginAccount = new LoginAccount(userName, password);
 
@@ -36,32 +39,39 @@ public class LoginAccountServiceImpl implements LoginAccountService {
         return loginAccount;
     }
 
+    @Log(logLevel = LogLevel.DEBUG)
     public LoginAccount findLoginAccountById(long id) throws EntityNotFoundException {
         return loginAccountRepository.findById(id);
     }
 
+    @Log(logLevel = LogLevel.DEBUG)
     public LoginAccount findLoginAccountByUserName(String userName) throws EntityNotFoundException {
         return loginAccountRepository.findByUserName(userName);
     }
 
+    @Log(logLevel = LogLevel.DEBUG)
     public void deleteLoginAccount(long id) throws EntityNotFoundException {
         loginAccountRepository.delete(id);
     }
 
+    @Log(logLevel = LogLevel.DEBUG)
     public Role createRole(String roleName, String roleDescription) {
         Role role = new Role(roleName, roleDescription);
         roleRepository.save(role);
         return role;
     }
 
+    @Log(logLevel = LogLevel.DEBUG)
     public Role findRoleById(long id) throws EntityNotFoundException {
         return roleRepository.findById(id);
     }
 
+    @Log(logLevel = LogLevel.DEBUG)
     public Role findRoleByName(String roleName) throws EntityNotFoundException {
         return roleRepository.findByName(roleName);
     }
 
+    @Log(logLevel = LogLevel.DEBUG)
     public void deleteRole(long id) throws EntityNotFoundException {
         // todo check whether the role is used in login accounts
         roleRepository.delete(id);

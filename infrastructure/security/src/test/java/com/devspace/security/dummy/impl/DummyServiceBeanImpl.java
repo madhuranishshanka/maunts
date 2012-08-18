@@ -1,6 +1,6 @@
-package com.devspace.security.mock.impl;
+package com.devspace.security.dummy.impl;
 
-import com.devspace.security.mock.DummyServiceBean;
+import com.devspace.security.dummy.DummyServiceBean;
 import org.springframework.stereotype.Service;
 
 /**

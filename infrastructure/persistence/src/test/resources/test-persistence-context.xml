@@ -15,12 +15,11 @@
     <context:component-scan base-package="com"/>
     <tx:annotation-driven/>
 
-    <bean id="dataSource"
-          class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
-        <property name="url" value="jdbc:mysql://localhost:3306/maunts"/>
-        <property name="username" value="root"/>
-        <property name="password" value=""/>
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="org.apache.derby.jdbc.EmbeddedDriver"/>
+        <property name="url" value="jdbc:derby:target/database/message;create=true"/>
+        <property name="username" value="app"/>
+        <property name="password" value="app"/>
     </bean>
 
     <bean id="entityManagerFactory"
@@ -28,7 +27,7 @@
         <property name="dataSource" ref="dataSource"></property>
         <property name="jpaVendorAdapter">
             <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
-                <property name="databasePlatform" value="org.hibernate.dialect.MySQL5Dialect"/>
+                <property name="databasePlatform" value="org.hibernate.dialect.DerbyDialect"/>
             </bean>
         </property>
         <property name="jpaProperties">

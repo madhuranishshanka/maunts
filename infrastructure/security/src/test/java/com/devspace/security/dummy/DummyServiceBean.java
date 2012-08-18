@@ -1,4 +1,4 @@
-package com.devspace.security.mock;
+package com.devspace.security.dummy;
 
 import org.springframework.security.access.prepost.PreAuthorize;
 

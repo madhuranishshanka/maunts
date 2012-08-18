@@ -9,15 +9,7 @@
     http://www.springframework.org/schema/context/spring-context-3.1.xsd
     http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.1.xsd">
 
-    <!--<bean id="dataSource"-->
-    <!--class="org.springframework.jdbc.datasource.DriverManagerDataSource">-->
-    <!--<property name="driverClassName" value="org.apache.derby.jdbc.EmbeddedDriver"/>-->
-    <!--<property name="url"-->
-    <!--value="jdbc:derby:target/database/message;create=true"/>-->
-    <!--<property name="username" value="app"/>-->
-    <!--<property name="password" value="app"/>-->
 
-    <!--</bean>-->
 
     <context:annotation-config/>
     <context:component-scan base-package="com"/>

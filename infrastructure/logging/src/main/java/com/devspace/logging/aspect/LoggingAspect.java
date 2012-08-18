@@ -67,21 +67,8 @@ public class LoggingAspect {
     @AfterThrowing(value = "@annotation(log)", throwing = "throwable", argNames = "joinPoint,throwable,log")
     public void logAfterThrowing(JoinPoint joinPoint, Throwable throwable, Log log) {
 
-        LogLevel logLevel = log.logLevel();
         if (log.logException()) {
-            if (logger.isTraceEnabled() && logLevel.equals(LogLevel.TRACE)) {
-                logger.trace(constructExceptionLogMessage(joinPoint, throwable));
-            } else if (logger.isDebugEnabled() && logLevel.equals(LogLevel.DEBUG)) {
-                logger.debug(constructExceptionLogMessage(joinPoint, throwable));
-            } else if (logger.isInfoEnabled() && logLevel.equals(LogLevel.INFO)) {
-                logger.info(constructExceptionLogMessage(joinPoint, throwable));
-            } else if (logger.isWarnEnabled() && logLevel.equals(LogLevel.WARN)) {
-                logger.warn(constructExceptionLogMessage(joinPoint, throwable));
-            } else if (logger.isErrorEnabled() && logLevel.equals(LogLevel.ERROR)) {
-                logger.error(constructExceptionLogMessage(joinPoint, throwable));
-            } else if (logger.isFatalEnabled() && logLevel.equals(LogLevel.FATAL)) {
-                logger.fatal(constructExceptionLogMessage(joinPoint, throwable));
-            }
+            logger.error(constructExceptionLogMessage(joinPoint, throwable));
         }
     }
 

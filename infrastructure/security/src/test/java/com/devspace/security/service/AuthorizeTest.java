@@ -4,7 +4,7 @@ import com.devspace.multitenancy.domain.TenantContext;
 import com.devspace.persistence.exception.EntityNotFoundException;
 import com.devspace.security.domain.LoginAccount;
 import com.devspace.security.domain.Role;
-import com.devspace.security.mock.DummyServiceBean;
+import com.devspace.security.dummy.DummyServiceBean;
 import com.devspace.security.service.impl.UserLoginDetailsServiceImpl;
 import org.junit.After;
 import org.junit.Before;

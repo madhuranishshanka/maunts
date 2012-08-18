@@ -1,5 +1,6 @@
 package com.devspace.reservation.repository;
 
+import com.devspace.multitenancy.domain.TenantContext;
 import com.devspace.persistence.domain.Entity;
 import com.devspace.persistence.exception.EntityNotFoundException;
 import com.devspace.reservation.domain.Room;
@@ -32,6 +33,7 @@ public class RoomRepositoryTest {
 
     @Test
     public void testRoomCrud() {
+        TenantContext.setTenant("Tenant1");
         Entity persistedRoom = null;
         RoomType roomType = new RoomType();
         roomType.setExternalId("Economy");
