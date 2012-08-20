@@ -36,8 +36,7 @@ public class RoomRepositoryTest {
         TenantContext.setTenant("Tenant1");
         Entity persistedRoom = null;
         RoomType roomType = new RoomType();
-        roomType.setExternalId("Economy");
-        roomType.setName("Economy class");
+
 
         Room room = new Room();
         room.setRoomNumber("number1");
@@ -54,7 +53,7 @@ public class RoomRepositoryTest {
         }
 
         room.setRoomStatus(RoomStatus.NOT_AVAILABLE);
-        room.getRoomType().setName("Updated Economy class");
+
 
         roomRepository.update(room);
 
