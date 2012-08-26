@@ -4,6 +4,8 @@ import com.devspace.persistence.domain.Entity;
 
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
+import javax.persistence.ManyToOne;
 
 /**
  * @author Madhura Nishshanka
@@ -13,9 +15,9 @@ import javax.persistence.Enumerated;
 public class Room extends Entity {
 
     private String roomNumber;
-
     @Enumerated(EnumType.STRING)
     private RoomStatus roomStatus;
+    @ManyToOne(fetch = FetchType.EAGER)
     private RoomType roomType;
 
     public String getRoomNumber() {

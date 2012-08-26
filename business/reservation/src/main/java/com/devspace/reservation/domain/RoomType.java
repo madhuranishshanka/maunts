@@ -11,10 +11,9 @@ public class RoomType extends Entity {
 
     private String roomTypeName;
     private String description;
-    private String roomTypeImage1;
-    private String roomTypeImage2;
-    private String roomTypeImage3;
-    private String roomTypeImage4;
+    private String roomTypeImgOne;
+    private String roomTypeImgTwo;
+    private String roomTypeImgThere;
 
 
     public String getRoomTypeName() {
@@ -33,37 +32,27 @@ public class RoomType extends Entity {
         this.description = description;
     }
 
-    public String getRoomTypeImage1() {
-        return roomTypeImage1;
+    public String getRoomTypeImgOne() {
+        return roomTypeImgOne;
     }
 
-    public void setRoomTypeImage1(String roomTypeImage1) {
-        this.roomTypeImage1 = roomTypeImage1;
+    public void setRoomTypeImgOne(String roomTypeImgOne) {
+        this.roomTypeImgOne = roomTypeImgOne;
     }
 
-    public String getRoomTypeImage2() {
-        return roomTypeImage2;
+    public String getRoomTypeImgThere() {
+        return roomTypeImgThere;
     }
 
-    public void setRoomTypeImage2(String roomTypeImage2) {
-        this.roomTypeImage2 = roomTypeImage2;
+    public void setRoomTypeImgThere(String roomTypeImgThere) {
+        this.roomTypeImgThere = roomTypeImgThere;
     }
 
-    public String getRoomTypeImage3() {
-        return roomTypeImage3;
+    public String getRoomTypeImgTwo() {
+        return roomTypeImgTwo;
     }
 
-    public void setRoomTypeImage3(String roomTypeImage3) {
-        this.roomTypeImage3 = roomTypeImage3;
+    public void setRoomTypeImgTwo(String roomTypeImgTwo) {
+        this.roomTypeImgTwo = roomTypeImgTwo;
     }
-
-    public String getRoomTypeImage4() {
-        return roomTypeImage4;
-    }
-
-    public void setRoomTypeImage4(String roomTypeImage4) {
-        this.roomTypeImage4 = roomTypeImage4;
-    }
-
-
 }

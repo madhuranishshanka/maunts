@@ -15,62 +15,58 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 /**
- * @author Madhura Nishshanka
- * @since 1.0
+ * Created with IntelliJ IDEA.
+ * User: Naz
+ * Date: 8/26/12
+ * Time: 4:52 PM
+ * To change this template use File | Settings | File Templates.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"classpath:reservation-context.xml"})
 @TransactionConfiguration(transactionManager = "transactionManager", defaultRollback = false)
 @Transactional
-public class RoomRepositoryTest {
-
+public class RoomTest {
 
     @Resource(name = "roomRepository")
     private RoomRepository roomRepository;
+    @Resource(name = "roomTypeRepository")
+    private RoomTypeRepository roomTypeRepository;
 
     @Test
     public void testRoomCrud() {
-        TenantContext.setTenant("Tenant1");
-        Entity persistedRoom = null;
+
+        TenantContext.setTenant("Tenant2");
+        Entity persistedRoomType = null;
+
         RoomType roomType = new RoomType();
+        roomType.setRoomTypeName("double");
+        roomType.setDescription("double roomtype has 1 bed");
+        roomType.setRoomTypeImgOne("image1.png");
+        roomType.setRoomTypeImgTwo("image2.png");
+        roomType.setRoomTypeImgThere("image3.png");
 
-
-        Room room = new Room();
-        room.setRoomNumber("number1");
+         Room room=new Room();
+        room.setRoomNumber("001");
         room.setRoomStatus(RoomStatus.AVAILABLE);
         room.setRoomType(roomType);
 
+        roomTypeRepository.save(roomType);
         roomRepository.save(room);
-        try {
-            persistedRoom = roomRepository.findById(room.getId());
-            assertNotNull(persistedRoom);
-            assertTrue("Un-matching rooms ", room.equals(persistedRoom));
-        } catch (EntityNotFoundException e) {
-            assertFalse("Exception " + e.getMessage(), true);
-        }
-
-        room.setRoomStatus(RoomStatus.NOT_AVAILABLE);
-
-
-        roomRepository.update(room);
 
         try {
-            persistedRoom = roomRepository.findById(room.getId());
-            assertNotNull(persistedRoom);
-            assertTrue("Un-matching rooms ", room.equals(persistedRoom));
+            persistedRoomType = roomTypeRepository.findById(roomType.getId());
+            assertNotNull(persistedRoomType);
+            assertTrue("Un-matching rooms ", roomType.equals(persistedRoomType));
         } catch (EntityNotFoundException e) {
             assertFalse("Exception " + e.getMessage(), true);
         }
 
 
-        try {
-            roomRepository.delete(room.getId());
-            persistedRoom = roomRepository.findById(room.getId());
-            fail("Room object found");
-        } catch (EntityNotFoundException e) {
-        }
     }
+
 }
