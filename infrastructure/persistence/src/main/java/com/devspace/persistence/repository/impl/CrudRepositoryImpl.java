@@ -5,6 +5,11 @@ import com.devspace.persistence.exception.EntityNotFoundException;
 import com.devspace.persistence.repository.CrudRepository;
 
 import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
+import java.util.List;
 
 /**
  * @author Madhura Nishshanka
@@ -34,4 +39,15 @@ public abstract class CrudRepositoryImpl<T extends Entity> implements CrudReposi
     public void delete(long id) throws EntityNotFoundException {
         getEntityManager().remove(findById(id));
     }
+
+    public List<T> findAll() {
+        CriteriaBuilder criteriaBuilder = getEntityManager().getCriteriaBuilder();
+        CriteriaQuery<T> criteriaQuery = criteriaBuilder.createQuery(getClassType());
+        Root<T> from = criteriaQuery.from(getClassType());
+        CriteriaQuery<T> select = criteriaQuery.select(from);
+
+        TypedQuery<T> query = getEntityManager().createQuery(select);
+        return query.getResultList();
+    }
+
 }

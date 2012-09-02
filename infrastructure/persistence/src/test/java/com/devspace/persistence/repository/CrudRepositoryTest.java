@@ -1,5 +1,6 @@
 package com.devspace.persistence.repository;
 
+import com.devspace.multitenancy.domain.TenantContext;
 import com.devspace.persistence.exception.EntityNotFoundException;
 import com.devspace.persistence.dummy.DummyCrudRepositoryImpl;
 import com.devspace.persistence.dummy.DummyEntityBean;
@@ -12,6 +13,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 
+import java.util.List;
+
+import static junit.framework.Assert.assertNotNull;
+import static junit.framework.Assert.assertTrue;
 import static junit.framework.Assert.fail;
 import static org.junit.Assert.*;
 
@@ -31,7 +36,7 @@ public class CrudRepositoryTest {
     @Resource(name = "dummyCrudRepository")
     private DummyCrudRepositoryImpl crudRepository;
 
-        @Test
+    @Test
     public void testRoomCrud() {
 
         String name = "entity Name";
@@ -70,4 +75,29 @@ public class CrudRepositoryTest {
         }
     }
 
+    @Test
+    public void testFindAll() {
+        TenantContext.setTenant("tenantId");
+        DummyEntityBean entity1 = new DummyEntityBean();
+        entity1.setName("entity1");
+        crudRepository.save(entity1);
+
+        DummyEntityBean entity2 = new DummyEntityBean();
+        entity1.setName("entity2");
+        crudRepository.save(entity2);
+
+        DummyEntityBean entity3 = new DummyEntityBean();
+        entity1.setName("entity3");
+        crudRepository.save(entity3);
+
+        DummyEntityBean entity4 = new DummyEntityBean();
+        entity1.setName("entity4");
+        crudRepository.save(entity4);
+
+        List<DummyEntityBean> all = crudRepository.findAll();
+
+        assertNotNull(all);
+        assertTrue(all.size() == 4);
+
+    }
 }

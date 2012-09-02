@@ -3,6 +3,8 @@ package com.devspace.persistence.repository;
 import com.devspace.persistence.domain.Entity;
 import com.devspace.persistence.exception.EntityNotFoundException;
 
+import java.util.List;
+
 /**
  * @author Madhura Nishshanka
  * @since 1.0
@@ -17,5 +19,5 @@ public interface CrudRepository<T extends Entity> {
 
     void delete(long id) throws EntityNotFoundException;
 
-
+    public List<T> findAll();
 }
