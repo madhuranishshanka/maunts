@@ -9,6 +9,8 @@
 
     <context:component-scan base-package="com.devspace.reservation.controller"/>
 
+    <import resource="classpath:reservation-context.xml"/>
+
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix">
             <value>/WEB-INF/pages/</value>

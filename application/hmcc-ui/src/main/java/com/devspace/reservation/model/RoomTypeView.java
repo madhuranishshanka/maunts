@@ -7,7 +7,7 @@ package com.devspace.reservation.model;
  * Time: 9:21 PM
  * To change this template use File | Settings | File Templates.
  */
-public class RoomType {
+public class RoomTypeView {
 
     private Long id;
     private String roomTypeName;

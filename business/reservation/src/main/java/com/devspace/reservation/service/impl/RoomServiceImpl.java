@@ -1,8 +1,11 @@
 package com.devspace.reservation.service.impl;
 
 import com.devspace.reservation.domain.RoomType;
+import com.devspace.reservation.repository.RoomTypeRepository;
 import com.devspace.reservation.service.RoomService;
+import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -12,11 +15,24 @@ import java.util.List;
  * Time: 8:21 PM
  * To change this template use File | Settings | File Templates.
  */
-public class RoomServiceImpl implements RoomService{
+@Service("roomService")
+public class RoomServiceImpl implements RoomService {
 
-    public List<RoomType> getAll() throws Exception {
+    @Resource(name = "roomTypeRepository")
+    private RoomTypeRepository roomTypeRepository;
 
-        return null ;
-
+    public List<RoomType> getAllRoomTypes(){
+        return roomTypeRepository.findAll();
     }
+
+    public RoomType createRoomType(RoomType roomType) {
+        roomTypeRepository.save(roomType);
+        return roomType;
+    }
+
+    public RoomType getRoomTypeByName(String roomTypeName) {
+        throw new UnsupportedOperationException();
+    }
+
+
 }

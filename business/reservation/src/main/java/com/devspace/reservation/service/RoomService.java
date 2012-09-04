@@ -1,8 +1,9 @@
 package com.devspace.reservation.service;
 
 import com.devspace.reservation.domain.RoomType;
-import java.util.ArrayList;
+
 import java.util.List;
+
 /**
  * Created with IntelliJ IDEA.
  * User: Naz
@@ -12,5 +13,9 @@ import java.util.List;
  */
 public interface RoomService {
 
-    public List<RoomType> getAll()throws Exception;
+    List<RoomType> getAllRoomTypes();
+
+    RoomType createRoomType(RoomType roomType);
+
+    RoomType getRoomTypeByName(String roomTypeName);
 }

@@ -1,19 +1,64 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0                              http://maven.apache.org/maven-v4_0_0.xsd">
-	<modelVersion>4.0.0</modelVersion>
-	<parent>
-		<groupId>com.devspace</groupId>
-		<artifactId>maunts</artifactId>
-		<version>1.0-SNAPSHOT</version>
-	</parent>
-	<groupId>com.devspace</groupId>
-	<artifactId>application</artifactId>
-	<packaging>pom</packaging>
-	<version>1.0-SNAPSHOT</version>
-	<name>Applications</name>	
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0                              http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.devspace</groupId>
+        <artifactId>maunts</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <groupId>com.devspace</groupId>
+    <artifactId>application</artifactId>
+    <packaging>pom</packaging>
+    <version>1.0-SNAPSHOT</version>
+    <name>Applications</name>
 
 
-  <modules>
-    <module>hmcc-ui</module>
-  </modules>
+    <modules>
+        <module>hmcc-ui</module>
+    </modules>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>aspectj-maven-plugin</artifactId>
+                <version>1.4</version>
+                <configuration>
+                    <source>1.6</source>
+                    <target>1.6</target>
+                    <weaveDependencies>
+                        <weaveDependency>
+                            <groupId>com.devspace</groupId>
+                            <artifactId>logging</artifactId>
+                        </weaveDependency>
+                        <weaveDependency>
+                            <groupId>com.devspace</groupId>
+                            <artifactId>multitenancy</artifactId>
+                        </weaveDependency>
+                    </weaveDependencies>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>compile</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.devspace</groupId>
+            <artifactId>logging</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.devspace</groupId>
+            <artifactId>multitenancy</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
 </project>
