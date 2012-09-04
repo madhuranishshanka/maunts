@@ -4,6 +4,8 @@ import com.devspace.reservation.domain.RoomType;
 import com.devspace.reservation.repository.RoomTypeRepository;
 import com.devspace.reservation.service.RoomService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -24,7 +26,7 @@ public class RoomServiceImpl implements RoomService {
     public List<RoomType> getAllRoomTypes(){
         return roomTypeRepository.findAll();
     }
-
+    @Transactional(propagation = Propagation.REQUIRED)
     public RoomType createRoomType(RoomType roomType) {
         roomTypeRepository.save(roomType);
         return roomType;
