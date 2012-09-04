@@ -6,6 +6,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
+
+import com.devspace.reservation.model.RoomType;
 /**
  * @author Madhura Nishshanka
  * @since 1.0
@@ -15,8 +19,9 @@ import org.springframework.web.servlet.ModelAndView;
 public class RoomTypeController {
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)
-    public ModelAndView create() {
-        ModelAndView modelAndView = new ModelAndView("roomType");
+    public ModelAndView create(@ModelAttribute("roomType") RoomType roomType,BindingResult result) {
+
+
         return modelAndView;
     }
 
