@@ -5,12 +5,16 @@ import com.devspace.logging.domain.LogLevel;
 import com.devspace.persistence.exception.EntityNotFoundException;
 import com.devspace.security.domain.LoginAccount;
 import com.devspace.security.domain.Role;
+import com.devspace.security.exception.LoginAccountNotFound;
+import com.devspace.security.exception.RoleNotFoundException;
 import com.devspace.security.repository.LoginAccountRepository;
 import com.devspace.security.repository.RoleRepository;
 import com.devspace.security.service.LoginAccountService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -27,11 +31,13 @@ public class LoginAccountServiceImpl implements LoginAccountService {
     private LoginAccountRepository loginAccountRepository;
 
     @Log(logLevel = LogLevel.DEBUG)
-    public LoginAccount createLoginAccount(String userName, String password, Set<Role> roles) throws EntityNotFoundException {
+    public LoginAccount createLoginAccount(String userName, String password,
+                                           Set<String> roleNames) throws RoleNotFoundException {
         LoginAccount loginAccount = new LoginAccount(userName, password);
 
-        for (Role role : roles) {
-            findRoleById(role.getId());
+        List<Role> roles = new ArrayList<Role>();
+        for (String roleName : roleNames) {
+            roles.add(findRoleByName(roleName));
         }
 
         loginAccount.getRoles().addAll(roles);
@@ -40,18 +46,30 @@ public class LoginAccountServiceImpl implements LoginAccountService {
     }
 
     @Log(logLevel = LogLevel.DEBUG)
-    public LoginAccount findLoginAccountById(long id) throws EntityNotFoundException {
-        return loginAccountRepository.findById(id);
+    public LoginAccount findLoginAccountById(long id) throws LoginAccountNotFound {
+        try {
+            return loginAccountRepository.findById(id);
+        } catch (EntityNotFoundException e) {
+            throw new LoginAccountNotFound(e.getMessage());
+        }
     }
 
     @Log(logLevel = LogLevel.DEBUG)
-    public LoginAccount findLoginAccountByUserName(String userName) throws EntityNotFoundException {
-        return loginAccountRepository.findByUserName(userName);
+    public LoginAccount findLoginAccountByUserName(String userName) throws LoginAccountNotFound {
+        try {
+            return loginAccountRepository.findByUserName(userName);
+        } catch (EntityNotFoundException e) {
+            throw new LoginAccountNotFound(e.getMessage());
+        }
     }
 
     @Log(logLevel = LogLevel.DEBUG)
-    public void deleteLoginAccount(long id) throws EntityNotFoundException {
-        loginAccountRepository.delete(id);
+    public void deleteLoginAccount(long id) throws LoginAccountNotFound {
+        try {
+            loginAccountRepository.delete(id);
+        } catch (EntityNotFoundException e) {
+            throw new LoginAccountNotFound(e.getMessage());
+        }
     }
 
     @Log(logLevel = LogLevel.DEBUG)
@@ -62,18 +80,30 @@ public class LoginAccountServiceImpl implements LoginAccountService {
     }
 
     @Log(logLevel = LogLevel.DEBUG)
-    public Role findRoleById(long id) throws EntityNotFoundException {
-        return roleRepository.findById(id);
+    public Role findRoleById(long id) throws RoleNotFoundException {
+        try {
+            return roleRepository.findById(id);
+        } catch (EntityNotFoundException e) {
+            throw new RoleNotFoundException(e.getMessage());
+        }
     }
 
     @Log(logLevel = LogLevel.DEBUG)
-    public Role findRoleByName(String roleName) throws EntityNotFoundException {
-        return roleRepository.findByName(roleName);
+    public Role findRoleByName(String roleName) throws RoleNotFoundException {
+        try {
+            return roleRepository.findByName(roleName);
+        } catch (EntityNotFoundException e) {
+            throw new RoleNotFoundException(e.getMessage());
+        }
     }
 
     @Log(logLevel = LogLevel.DEBUG)
-    public void deleteRole(long id) throws EntityNotFoundException {
+    public void deleteRole(long id) throws RoleNotFoundException {
         // todo check whether the role is used in login accounts
-        roleRepository.delete(id);
+        try {
+            roleRepository.delete(id);
+        } catch (EntityNotFoundException e) {
+            throw new RoleNotFoundException(e.getMessage());
+        }
     }
 }

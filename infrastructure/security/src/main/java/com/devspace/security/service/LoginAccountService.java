@@ -1,6 +1,7 @@
 package com.devspace.security.service;
 
-import com.devspace.persistence.exception.EntityNotFoundException;
+import com.devspace.security.exception.LoginAccountNotFound;
+import com.devspace.security.exception.RoleNotFoundException;
 import com.devspace.security.domain.LoginAccount;
 import com.devspace.security.domain.Role;
 
@@ -12,19 +13,20 @@ import java.util.Set;
  */
 public interface LoginAccountService {
 
-    LoginAccount createLoginAccount(String userName, String password, Set<Role> roles) throws EntityNotFoundException;
+    LoginAccount createLoginAccount(String userName, String password, Set<String> roleNames)
+            throws RoleNotFoundException;
 
-    LoginAccount findLoginAccountById(long id) throws EntityNotFoundException;
+    LoginAccount findLoginAccountById(long id) throws LoginAccountNotFound;
 
-    LoginAccount findLoginAccountByUserName(String userName) throws EntityNotFoundException;
+    LoginAccount findLoginAccountByUserName(String userName) throws LoginAccountNotFound;
 
-    void deleteLoginAccount(long id) throws EntityNotFoundException;
+    void deleteLoginAccount(long id) throws LoginAccountNotFound;
 
     Role createRole(String roleName, String roleDescription);
 
-    Role findRoleById(long id) throws EntityNotFoundException;
+    Role findRoleById(long id) throws RoleNotFoundException;
 
-    Role findRoleByName(String roleName) throws EntityNotFoundException;
+    Role findRoleByName(String roleName) throws RoleNotFoundException;
 
-    void deleteRole(long id) throws EntityNotFoundException;
+    void deleteRole(long id) throws RoleNotFoundException;
 }

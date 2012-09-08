@@ -1,10 +1,11 @@
 package com.devspace.security.service;
 
 import com.devspace.multitenancy.domain.TenantContext;
-import com.devspace.persistence.exception.EntityNotFoundException;
 import com.devspace.security.domain.LoginAccount;
 import com.devspace.security.domain.Role;
 import com.devspace.security.dummy.DummyServiceBean;
+import com.devspace.security.exception.LoginAccountNotFound;
+import com.devspace.security.exception.RoleNotFoundException;
 import com.devspace.security.service.impl.UserLoginDetailsServiceImpl;
 import org.junit.After;
 import org.junit.Before;
@@ -56,19 +57,19 @@ public class AuthorizeTest {
     public void setUp() {
 
         TenantContext.setTenant(tenantId);
-        Set<Role> roles = new HashSet<Role>();
+        Set<String> roles = new HashSet<String>();
         Role guest = null;
         try {
             guest = loginAccountService.createRole(roleName, "guest description");
-            roles.add(guest);
+            roles.add(guest.getName());
             loginAccount = loginAccountService.createLoginAccount(userName, password, roles);
-        } catch (EntityNotFoundException e) {
+        } catch (RoleNotFoundException e) {
             fail(e.getMessage());
         }
     }
 
     @After
-    public void tearDown() throws EntityNotFoundException {
+    public void tearDown() throws LoginAccountNotFound, RoleNotFoundException {
         loginAccountService.deleteLoginAccount(loginAccount.getId());
         Set<Role> roles = loginAccount.getRoles();
         loginAccountService.deleteRole(roles.iterator().next().getId());

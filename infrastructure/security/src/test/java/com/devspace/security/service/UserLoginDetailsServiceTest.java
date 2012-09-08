@@ -1,9 +1,10 @@
 package com.devspace.security.service;
 
 import com.devspace.multitenancy.domain.TenantContext;
-import com.devspace.persistence.exception.EntityNotFoundException;
 import com.devspace.security.domain.LoginAccount;
 import com.devspace.security.domain.Role;
+import com.devspace.security.exception.LoginAccountNotFound;
+import com.devspace.security.exception.RoleNotFoundException;
 import com.devspace.security.service.impl.UserLoginDetailsServiceImpl;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -39,19 +40,19 @@ public class UserLoginDetailsServiceTest {
     private UserLoginDetailsServiceImpl userLoginDetailsService;
 
 
-     @Test
+    @Test
     public void testFindByUserName() {
         TenantContext.setTenant("tenant1");
 
-        Set<Role> roles = new HashSet<Role>();
+        Set<String> roles = new HashSet<String>();
 
         Role guest = null;
         LoginAccount loginAccount = null;
         try {
             guest = loginAccountService.createRole("guest", "guest description");
-            roles.add(guest);
+            roles.add(guest.getName());
             loginAccount = loginAccountService.createLoginAccount("userName", "password", roles);
-        } catch (EntityNotFoundException e) {
+        } catch (RoleNotFoundException e) {
             fail(e.getMessage());
         }
 
@@ -67,13 +68,14 @@ public class UserLoginDetailsServiceTest {
 
         try {
             loginAccountService.deleteLoginAccount(loginAccount.getId());
-        } catch (EntityNotFoundException e) {
+        } catch (LoginAccountNotFound e) {
             fail(e.getMessage());
         }
 
+
         try {
             loginAccountService.deleteRole(guest.getId());
-        } catch (EntityNotFoundException e) {
+        } catch (RoleNotFoundException e) {
             fail(e.getMessage());
         }
 

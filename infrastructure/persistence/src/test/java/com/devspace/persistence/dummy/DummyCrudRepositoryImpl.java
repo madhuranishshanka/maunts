@@ -17,11 +17,7 @@ public class DummyCrudRepositoryImpl extends com.devspace.persistence.repository
 
     @Override
     public EntityManager getEntityManager() {
-
         return entityManager;
-    }
-    public void setEntityManager(EntityManager entityManager){
-
     }
     @Override
     public Class<DummyEntityBean> getClassType() {
