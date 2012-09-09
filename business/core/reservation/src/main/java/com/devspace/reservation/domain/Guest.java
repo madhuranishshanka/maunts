@@ -17,14 +17,14 @@ public class Guest extends Entity {
 
     private String firstName;
     private String lastName;
-    private String phoneNo;
+    private String phoneNumber;
     private String email;
-    private String passportNo;
+    private String passportNumber;
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Address address;
     private ActiveStatus activeStatus;
     @OneToMany(fetch = FetchType.EAGER)
-    private Set<Reservation> reservation;
+    private Set<Reservation> reservations;
 
     public String getFirstName() {
         return firstName;
@@ -42,12 +42,12 @@ public class Guest extends Entity {
         this.lastName = lastName;
     }
 
-    public String getPhoneNo() {
-        return phoneNo;
+    public String getPhoneNumber() {
+        return phoneNumber;
     }
 
-    public void setPhoneNo(String phoneNo) {
-        this.phoneNo = phoneNo;
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
     public String getEmail() {
@@ -74,19 +74,19 @@ public class Guest extends Entity {
         this.activeStatus = activeStatus;
     }
 
-    public String getPassportNo() {
-        return passportNo;
+    public String getPassportNumber() {
+        return passportNumber;
     }
 
-    public void setPassportNo(String passportNo) {
-        this.passportNo = passportNo;
+    public void setPassportNumber(String passportNumber) {
+        this.passportNumber = passportNumber;
     }
 
-    public Set<Reservation> getReservation() {
-        return reservation;
+    public Set<Reservation> getReservations() {
+        return reservations;
     }
 
-    public void setReservation(Set<Reservation> reservation) {
-        this.reservation = reservation;
+    public void setReservations(Set<Reservation> reservations) {
+        this.reservations = reservations;
     }
 }

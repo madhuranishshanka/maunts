@@ -14,47 +14,48 @@ import javax.persistence.ManyToOne;
 @javax.persistence.Entity
 public class Room extends Entity {
 
-    private String roomNumber;
+    private String number;
     @Enumerated(EnumType.STRING)
-    private RoomStatus roomStatus;
+    private RoomStatus status;
     @ManyToOne(fetch = FetchType.EAGER)
-    private RoomType roomType;
+    private RoomType type;
 
-    public String getRoomNumber() {
-        return roomNumber;
+    public String getNumber() {
+        return number;
     }
 
-    public void setRoomNumber(String roomNumber) {
-        this.roomNumber = roomNumber;
+    public void setNumber(String number) {
+        this.number = number;
     }
 
-    public RoomStatus getRoomStatus() {
-        return roomStatus;
+    public RoomStatus getStatus() {
+        return status;
     }
 
-    public void setRoomStatus(RoomStatus roomStatus) {
-        this.roomStatus = roomStatus;
+    public void setStatus(RoomStatus status) {
+        this.status = status;
     }
 
-    public RoomType getRoomType() {
-        return roomType;
+    public RoomType getType() {
+        return type;
     }
 
-    public void setRoomType(RoomType roomType) {
-        this.roomType = roomType;
+    public void setType(RoomType type) {
+        this.type = type;
     }
+
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Room)) return false;
+        if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
 
         Room room = (Room) o;
 
-        if (roomNumber != null ? !roomNumber.equals(room.roomNumber) : room.roomNumber != null) return false;
-        if (roomStatus != room.roomStatus) return false;
-        if (roomType != null ? !roomType.equals(room.roomType) : room.roomType != null) return false;
+        if (number != null ? !number.equals(room.number) : room.number != null) return false;
+        if (status != room.status) return false;
+        if (type != null ? !type.equals(room.type) : room.type != null) return false;
 
         return true;
     }
@@ -62,9 +63,9 @@ public class Room extends Entity {
     @Override
     public int hashCode() {
         int result = super.hashCode();
-        result = 31 * result + (roomNumber != null ? roomNumber.hashCode() : 0);
-        result = 31 * result + (roomStatus != null ? roomStatus.hashCode() : 0);
-        result = 31 * result + (roomType != null ? roomType.hashCode() : 0);
+        result = 31 * result + (number != null ? number.hashCode() : 0);
+        result = 31 * result + (status != null ? status.hashCode() : 0);
+        result = 31 * result + (type != null ? type.hashCode() : 0);
         return result;
     }
 }

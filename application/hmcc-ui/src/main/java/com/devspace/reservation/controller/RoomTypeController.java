@@ -33,7 +33,7 @@ public class RoomTypeController {
 
         RoomType roomType = new RoomType();
         roomType.setDescription(roomTypeView.getDescription());
-        roomType.setRoomTypeName(roomTypeView.getRoomTypeName());
+        roomType.setName(roomTypeView.getRoomTypeName());
         roomService.createRoomType(roomType);
 
         List<RoomType> roomTypes = roomService.getAllRoomTypes();
@@ -42,7 +42,7 @@ public class RoomTypeController {
         for (RoomType tmpRoomType : roomTypes){
             RoomTypeView tmpRoomTypeView = new RoomTypeView();
 
-            tmpRoomTypeView.setRoomTypeName(tmpRoomType.getRoomTypeName());
+            tmpRoomTypeView.setRoomTypeName(tmpRoomType.getName());
             tmpRoomTypeView.setDescription(tmpRoomType.getDescription());
             roomTypeViews.add(tmpRoomTypeView);
         }

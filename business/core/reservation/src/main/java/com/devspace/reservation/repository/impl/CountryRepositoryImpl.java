@@ -1,6 +1,5 @@
 package com.devspace.reservation.repository.impl;
 
-import com.devspace.persistence.domain.Entity;
 import com.devspace.reservation.domain.Country;
 import com.devspace.reservation.repository.CountryRepository;
 import org.springframework.stereotype.Repository;
@@ -13,9 +12,10 @@ import org.springframework.stereotype.Repository;
  * To change this template use File | Settings | File Templates.
  */
 @Repository("countryRepository")
-public class CountryRepositoryImpl<T extends Entity> extends BaseRepositoryImpl<T> implements CountryRepository<T> {
+public class CountryRepositoryImpl extends BaseRepositoryImpl<Country> implements CountryRepository {
 
-    public Class<T> getClassType() {
-        return (Class<T>) Country.class;
+    @Override
+    public Class<Country> getClassType() {
+        return Country.class;
     }
 }

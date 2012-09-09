@@ -4,8 +4,6 @@ import com.devspace.persistence.domain.Entity;
 
 import javax.persistence.*;
 import java.util.Date;
-import java.util.Set;
-import javax.persistence.CascadeType;
 
 
 /**
@@ -18,32 +16,41 @@ import javax.persistence.CascadeType;
 @javax.persistence.Entity
 public class Reservation extends Entity {
 
-    @OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
-    private Set<Room> rooms;
-    @OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
-    private Set<ReservationStatusHistory> reservationStatusHistory;
-    @ManyToOne(fetch = FetchType.EAGER,cascade = {CascadeType.PERSIST,CascadeType.MERGE})
+    private String number;
+    @OneToOne(cascade = CascadeType.MERGE)
+    private Room room;
+    @OneToOne(cascade = {CascadeType.ALL})
+    private ReservationStatus reservationStatus;
+    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private Guest guest;
-    private Long paymentInstrumentId;
+    private Long billingAccountId;
     @Temporal(TemporalType.TIMESTAMP)
     private Date checkInDate;
     @Temporal(TemporalType.TIMESTAMP)
     private Date checkOutDate;
 
-    public Set<Room> getRooms() {
-        return rooms;
+    public String getNumber() {
+        return number;
     }
 
-    public void setRooms(Set<Room> rooms) {
-        this.rooms = rooms;
+    public void setNumber(String number) {
+        this.number = number;
     }
 
-    public Set<ReservationStatusHistory> getReservationStatusHistory() {
-        return reservationStatusHistory;
+    public Room getRoom() {
+        return room;
     }
 
-    public void setReservationStatusHistory(Set<ReservationStatusHistory> reservationStatusHistory) {
-        this.reservationStatusHistory = reservationStatusHistory;
+    public void setRoom(Room room) {
+        this.room = room;
+    }
+
+    public ReservationStatus getReservationStatus() {
+        return reservationStatus;
+    }
+
+    public void setReservationStatus(ReservationStatus reservationStatus) {
+        this.reservationStatus = reservationStatus;
     }
 
     public Guest getGuest() {
@@ -54,12 +61,12 @@ public class Reservation extends Entity {
         this.guest = guest;
     }
 
-    public Long getPaymentInstrumentId() {
-        return paymentInstrumentId;
+    public Long getBillingAccountId() {
+        return billingAccountId;
     }
 
-    public void setPaymentInstrumentId(Long paymentInstrumentId) {
-        this.paymentInstrumentId = paymentInstrumentId;
+    public void setBillingAccountId(Long billingAccountId) {
+        this.billingAccountId = billingAccountId;
     }
 
     public Date getCheckInDate() {

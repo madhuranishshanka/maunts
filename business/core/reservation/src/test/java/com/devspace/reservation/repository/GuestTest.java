@@ -66,9 +66,9 @@ public class GuestTest {
         guest.setLastName("Nishshanka");
         guest.setActiveStatus(ActiveStatus.ACTIVE);
         guest.setEmail("madhura@gmail.com");
-        guest.setPhoneNo("01122345345");
+        guest.setPhoneNumber("01122345345");
         guest.setAddress(address);
-        guest.setPassportNo("1234242V");
+        guest.setPassportNumber("1234242V");
 
         guestRepository.save(guest);
 

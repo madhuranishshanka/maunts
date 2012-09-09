@@ -1,7 +1,8 @@
 package com.devspace.reservation.repository;
 
-import com.devspace.persistence.domain.Entity;
+import com.devspace.persistence.exception.EntityNotFoundException;
 import com.devspace.persistence.repository.CrudRepository;
+import com.devspace.reservation.domain.RoomType;
 
 /**
  * Created with IntelliJ IDEA.
@@ -10,5 +11,7 @@ import com.devspace.persistence.repository.CrudRepository;
  * Time: 5:29 PM
  * To change this template use File | Settings | File Templates.
  */
-public interface RoomTypeRepository<T extends Entity> extends CrudRepository<T> {
+public interface RoomTypeRepository extends CrudRepository<RoomType> {
+
+    RoomType findByName(String name) throws EntityNotFoundException;
 }

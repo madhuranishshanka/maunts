@@ -9,19 +9,19 @@ import com.devspace.persistence.domain.Entity;
 @javax.persistence.Entity
 public class RoomType extends Entity {
 
-    private String roomTypeName;
+    private String name;
     private String description;
-    private String roomTypeImgOne;
-    private String roomTypeImgTwo;
-    private String roomTypeImgThere;
+    private String imgOne;
+    private String imgTwo;
+    private String imgThere;
 
 
-    public String getRoomTypeName() {
-        return roomTypeName;
+    public String getName() {
+        return name;
     }
 
-    public void setRoomTypeName(String roomTypeName) {
-        this.roomTypeName = roomTypeName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getDescription() {
@@ -32,27 +32,27 @@ public class RoomType extends Entity {
         this.description = description;
     }
 
-    public String getRoomTypeImgOne() {
-        return roomTypeImgOne;
+    public String getImgOne() {
+        return imgOne;
     }
 
-    public void setRoomTypeImgOne(String roomTypeImgOne) {
-        this.roomTypeImgOne = roomTypeImgOne;
+    public void setImgOne(String imgOne) {
+        this.imgOne = imgOne;
     }
 
-    public String getRoomTypeImgThere() {
-        return roomTypeImgThere;
+    public String getImgThere() {
+        return imgThere;
     }
 
-    public void setRoomTypeImgThere(String roomTypeImgThere) {
-        this.roomTypeImgThere = roomTypeImgThere;
+    public void setImgThere(String imgThere) {
+        this.imgThere = imgThere;
     }
 
-    public String getRoomTypeImgTwo() {
-        return roomTypeImgTwo;
+    public String getImgTwo() {
+        return imgTwo;
     }
 
-    public void setRoomTypeImgTwo(String roomTypeImgTwo) {
-        this.roomTypeImgTwo = roomTypeImgTwo;
+    public void setImgTwo(String imgTwo) {
+        this.imgTwo = imgTwo;
     }
 }

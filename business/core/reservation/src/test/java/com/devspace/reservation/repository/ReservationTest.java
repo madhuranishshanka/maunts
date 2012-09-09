@@ -12,14 +12,10 @@ import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
-
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
-
-import java.util.HashSet;
-import java.util.Set;
 import java.util.Date;
+
+import static org.junit.Assert.*;
+
 /**
  * Created with IntelliJ IDEA.
  * User: Naz
@@ -51,68 +47,62 @@ public class ReservationTest {
         Entity persistedRoomType = null;
 
         RoomType roomType = new RoomType();
-        roomType.setRoomTypeName("king");
+        roomType.setName("king");
         roomType.setDescription("king roomtype has 1 bed");
-        roomType.setRoomTypeImgOne("image1.png");
-        roomType.setRoomTypeImgTwo("image2.png");
-        roomType.setRoomTypeImgThere("image3.png");
+        roomType.setImgOne("image1.png");
+        roomType.setImgTwo("image2.png");
+        roomType.setImgThere("image3.png");
 
-        Room room=new Room();
-        room.setRoomNumber("002");
-        room.setRoomStatus(RoomStatus.AVAILABLE);
-        room.setRoomType(roomType);
+        Room room = new Room();
+        room.setNumber("002");
+        room.setStatus(RoomStatus.AVAILABLE);
+        room.setType(roomType);
 
         roomTypeRepository.save(roomType);
         roomRepository.save(room);
 
-        Set<Room> roomsSet=new HashSet<Room>();
-        roomsSet.add(room);
-
-
         Entity persistedGuest = null;
 
-        Country country=new Country();
+        Country country = new Country();
         country.setCountryName("Sri Lanka");
         country.setActiveStatus(ActiveStatus.ACTIVE);
         countryRepository.save(country);
 
-        Address address=new Address();
+        Address address = new Address();
         address.setNumber("100");
         address.setStreet("Galle road");
         address.setCity("Colombo");
         address.setState("western");
         address.setCountry(country);
 
-        Guest guest=new Guest();
+        Guest guest = new Guest();
         guest.setFirstName("Madhura");
         guest.setLastName("Nishshanka");
         guest.setActiveStatus(ActiveStatus.ACTIVE);
         guest.setEmail("madhura@gmail.com");
-        guest.setPhoneNo("01122345345");
+        guest.setPhoneNumber("01122345345");
         guest.setAddress(address);
-        guest.setPassportNo("1234242V");
+        guest.setPassportNumber("1234242V");
 
         guestRepository.save(guest);
 
 
         Entity persistedReservation = null;
 
-        ReservationStatusHistory reservationStatusHistory=new  ReservationStatusHistory();
-        reservationStatusHistory.setCreatedDate(new Date());
-        reservationStatusHistory.setCurrentStatus(true);
-        reservationStatusHistory.setReservationStatus(ReservationStatus.RESERVED);
+        ReservationStatus reservationStatusHistory = new ReservationStatus();
+        reservationStatusHistory.setChangedDate(new Date());
+        reservationStatusHistory.setStatus(ReservationStatus.Status.RESERVED);
 
-        Set<ReservationStatusHistory> reservationStatusHistorySet=new HashSet<ReservationStatusHistory>();
 
-        Reservation reservation=new Reservation();
+        Reservation reservation = new Reservation();
         reservation.setGuest(guest);
-        Date checkInDate=new Date();
-        Date checkOutDate=new Date();
+        Date checkInDate = new Date();
+        Date checkOutDate = new Date();
         reservation.setCheckInDate(checkInDate);
         reservation.setCheckOutDate(checkOutDate);
-        reservation.setPaymentInstrumentId(0112324L);
-        reservation.setRooms(roomsSet);
-        reservation.setReservationStatusHistory(reservationStatusHistorySet);
+        reservation.setBillingAccountId(0112324L);
+        reservation.setRoom(room);
+        reservation.setReservationStatus(new ReservationStatus());
 
         reservationRepository.save(reservation);
 
@@ -123,7 +113,6 @@ public class ReservationTest {
         } catch (EntityNotFoundException e) {
             assertFalse("Exception " + e.getMessage(), true);
         }
-
 
 
     }

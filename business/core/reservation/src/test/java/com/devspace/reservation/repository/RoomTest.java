@@ -44,16 +44,16 @@ public class RoomTest {
         Entity persistedRoomType = null;
 
         RoomType roomType = new RoomType();
-        roomType.setRoomTypeName("double");
+        roomType.setName("double");
         roomType.setDescription("double roomtype has 1 bed");
-        roomType.setRoomTypeImgOne("image1.png");
-        roomType.setRoomTypeImgTwo("image2.png");
-        roomType.setRoomTypeImgThere("image3.png");
+        roomType.setImgOne("image1.png");
+        roomType.setImgTwo("image2.png");
+        roomType.setImgThere("image3.png");
 
          Room room=new Room();
-        room.setRoomNumber("001");
-        room.setRoomStatus(RoomStatus.AVAILABLE);
-        room.setRoomType(roomType);
+        room.setNumber("001");
+        room.setStatus(RoomStatus.AVAILABLE);
+        room.setType(roomType);
 
         roomTypeRepository.save(roomType);
         roomRepository.save(room);

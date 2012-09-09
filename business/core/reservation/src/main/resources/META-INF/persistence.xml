@@ -13,6 +13,6 @@
         <class>com.devspace.reservation.domain.Guest</class>
         <class>com.devspace.reservation.domain.Hotel</class>
         <class>com.devspace.reservation.domain.Reservation</class>
-        <class>com.devspace.reservation.domain.ReservationStatusHistory</class>
+        <class>com.devspace.reservation.domain.ReservationStatus</class>
     </persistence-unit>
 </persistence>

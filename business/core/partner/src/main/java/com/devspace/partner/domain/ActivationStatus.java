@@ -4,6 +4,8 @@ import com.devspace.persistence.domain.Entity;
 
 import javax.persistence.CascadeType;
 import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import java.util.Date;
 
 /**
@@ -14,6 +16,7 @@ import java.util.Date;
 @javax.persistence.Entity
 public class ActivationStatus extends Entity {
     private Status status;
+    @Temporal(TemporalType.DATE)
     private Date changedDate;
     private String reason;
     @OneToOne(cascade = {CascadeType.PERSIST,CascadeType.MERGE})
