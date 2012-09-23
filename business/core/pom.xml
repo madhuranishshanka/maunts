@@ -17,6 +17,7 @@
         <module>reservation</module>
         <module>billing</module>
         <module>partner</module>
+        <module>commons</module>
     </modules>
 
 

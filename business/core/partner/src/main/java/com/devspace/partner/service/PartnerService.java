@@ -1,8 +1,12 @@
 package com.devspace.partner.service;
 
+import com.devspace.commons.common.exception.MissingMandatoryParamException;
 import com.devspace.partner.domain.Address;
 import com.devspace.partner.domain.Partner;
-import com.devspace.partner.exception.*;
+import com.devspace.partner.exception.AlreadyInActiveStateException;
+import com.devspace.partner.exception.AlreadyInactiveStateException;
+import com.devspace.partner.exception.PartnerCreationException;
+import com.devspace.partner.exception.PartnerNotFoundException;
 
 import java.util.List;
 
@@ -12,7 +16,8 @@ import java.util.List;
  */
 public interface PartnerService {
 
-    Partner createPartner(String externalId, String name, String description, List<String> phoneNumbers) throws MissingMandatoryParamException, PartnerCreationException;
+    Partner createPartner(String externalId, String name, String description, List<String> phoneNumbers)
+            throws MissingMandatoryParamException, PartnerCreationException;
 
     Partner addAddressToPartner(long partnerId, Address address) throws PartnerNotFoundException;
 

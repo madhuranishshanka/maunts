@@ -14,7 +14,7 @@
         <p style="font-weight: bold;font-size: 13px;width:30%;" class="col">Hospital Name</p>
         <c:forEach var="roomType" items="${roomTypeList}">
             <div class="row mng_rows">
-                <p style="width:30%;" class="col"><c:out value="${roomType.roomTypeName }"></c:out></p>
+                <p style="width:30%;" class="col"><c:out value="${roomType.name}"></c:out></p>
             </div>
         </c:forEach>
 

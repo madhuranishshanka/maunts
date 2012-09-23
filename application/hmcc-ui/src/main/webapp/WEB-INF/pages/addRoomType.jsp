@@ -33,9 +33,9 @@
             </div>
             <div class="col " style="width:70%;">
                 <input type="submit" id="form_submit_btn" name="Submit" class="form_submit_btn" value="Submit"
-                       style="position:relative;left:90px;"/>
+                style="position:relative;left:90px;"/>
                 <input type="reset" id="form_submit_btn" name="Clear" class="form_submit_btn" value="Clear"
-                       style="position:relative;left:110px;"/>
+                style="position:relative;left:110px;"/>
             </div>
         </div>
 

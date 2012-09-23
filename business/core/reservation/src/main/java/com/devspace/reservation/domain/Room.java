@@ -2,10 +2,9 @@ package com.devspace.reservation.domain;
 
 import com.devspace.persistence.domain.Entity;
 
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * @author Madhura Nishshanka
@@ -19,31 +18,37 @@ public class Room extends Entity {
     private RoomStatus status;
     @ManyToOne(fetch = FetchType.EAGER)
     private RoomType type;
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "room")
+    private Set<Reservation> activeReservations = new HashSet<Reservation>();
+
+    public Room() {
+    }
+
+    public Room(String number, RoomStatus status, RoomType type) {
+        this.number = number;
+        this.status = status;
+        this.type = type;
+    }
+
+    public void reserve(Reservation reservation) {
+        activeReservations.add(reservation);
+    }
+
+    public Set<Reservation> getActiveReservations() {
+        return activeReservations;
+    }
 
     public String getNumber() {
         return number;
-    }
-
-    public void setNumber(String number) {
-        this.number = number;
     }
 
     public RoomStatus getStatus() {
         return status;
     }
 
-    public void setStatus(RoomStatus status) {
-        this.status = status;
-    }
-
     public RoomType getType() {
         return type;
     }
-
-    public void setType(RoomType type) {
-        this.type = type;
-    }
-
 
     @Override
     public boolean equals(Object o) {

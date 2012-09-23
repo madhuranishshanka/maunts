@@ -15,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -44,12 +45,7 @@ public class RoomServiceImpl implements RoomService {
         for (int i = 0; i < numberOfRooms; i++) {
             String roomNumberAsString = roomNumberPrefix + roomNumber + roomNumberSuffix;
             roomNumber = roomNumber + range;
-
-            Room room = new Room();
-            room.setStatus(roomStatus);
-            room.setType(roomType);
-            room.setNumber(roomNumberAsString);
-
+            Room room = new Room(roomNumberAsString, roomStatus, roomType);
             roomRepository.save(room);
             roomNumbers.add(room.getNumber());
         }
@@ -58,10 +54,7 @@ public class RoomServiceImpl implements RoomService {
 
     public Room createRoom(String roomNumber, String roomTypeName, RoomStatus roomStatus) throws RoomTypeNotFoundException {
         RoomType roomType = getRoomTypeByName(roomTypeName);
-        Room room = new Room();
-        room.setStatus(roomStatus);
-        room.setNumber(roomNumber);
-        room.setType(roomType);
+        Room room = new Room(roomNumber, roomStatus,roomType);
         roomRepository.save(room);
         return room;
     }
@@ -92,6 +85,14 @@ public class RoomServiceImpl implements RoomService {
         } catch (EntityNotFoundException e) {
             throw new RoomNotFoundException(e.getMessage());
         }
+    }
+
+    public List<Room> getAvailableRooms(Date fromDate, Date toData) {
+        return null;  //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+    public List<Room> getAvailableRooms(RoomType romType, Date fromDate, Date toData) {
+        return null;  //To change body of implemented methods use File | Settings | File Templates.
     }
 
     @Transactional(propagation = Propagation.SUPPORTS)

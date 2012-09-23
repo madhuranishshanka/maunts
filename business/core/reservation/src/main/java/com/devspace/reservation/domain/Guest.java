@@ -1,7 +1,12 @@
 package com.devspace.reservation.domain;
 
 import com.devspace.persistence.domain.Entity;
-import javax.persistence.*;
+
+import javax.persistence.CascadeType;
+import javax.persistence.FetchType;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import java.util.HashSet;
 import java.util.Set;
 
 
@@ -23,8 +28,8 @@ public class Guest extends Entity {
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Address address;
     private ActiveStatus activeStatus;
-    @OneToMany(fetch = FetchType.EAGER)
-    private Set<Reservation> reservations;
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "guest")
+    private Set<Reservation> reservations = new HashSet<Reservation>();
 
     public String getFirstName() {
         return firstName;

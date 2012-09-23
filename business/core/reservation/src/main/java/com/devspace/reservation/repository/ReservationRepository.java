@@ -2,6 +2,9 @@ package com.devspace.reservation.repository;
 
 import com.devspace.persistence.repository.CrudRepository;
 import com.devspace.reservation.domain.Reservation;
+import com.devspace.reservation.repository.model.ReservationSearchCriteria;
+
+import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
@@ -11,4 +14,6 @@ import com.devspace.reservation.domain.Reservation;
  * To change this template use File | Settings | File Templates.
  */
 public interface ReservationRepository extends CrudRepository<Reservation> {
+
+    List<Reservation> findReservations(ReservationSearchCriteria criteria);
 }

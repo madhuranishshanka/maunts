@@ -6,6 +6,7 @@ import com.devspace.reservation.domain.RoomType;
 import com.devspace.reservation.exception.RoomNotFoundException;
 import com.devspace.reservation.exception.RoomTypeNotFoundException;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -29,6 +30,10 @@ public interface RoomService {
     List<RoomType> getAllRoomTypes();
 
     Room getRoomByRoomNumber(String roomNumber) throws RoomNotFoundException;
+
+    List<Room> getAvailableRooms(Date fromDate,Date toData);
+
+    List<Room> getAvailableRooms(RoomType romType, Date fromDate,Date toData);
 
     List<Room> getAllRooms();
 }

@@ -5,6 +5,7 @@ import com.devspace.partner.exception.*;
 import com.devspace.partner.repository.PartnerRepository;
 import com.devspace.partner.service.PartnerService;
 import com.devspace.persistence.exception.EntityNotFoundException;
+import com.devspace.commons.common.exception.MissingMandatoryParamException;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -24,9 +25,8 @@ public class PartnerServiceImpl implements PartnerService {
     @Resource(name = "partnerRepository")
     private PartnerRepository partnerRepository;
 
-    public Partner createPartner(String externalId, String name, String description,
-                                 List<String> phoneNumbers) throws MissingMandatoryParamException,
-            PartnerCreationException {
+    public Partner createPartner(String externalId, String name, String description, List<String> phoneNumbers)
+            throws MissingMandatoryParamException, PartnerCreationException {
 
         if (externalId == null || StringUtils.isEmpty(externalId)) {
             throw new MissingMandatoryParamException("Missing external Id");
@@ -39,7 +39,7 @@ public class PartnerServiceImpl implements PartnerService {
         try {
             partner.activate();
         } catch (AlreadyInActiveStateException e) {
-//            This should never be reach
+            // This should never be reach
             throw new PartnerCreationException(e.getMessage());
         }
 

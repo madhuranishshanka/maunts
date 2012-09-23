@@ -1,7 +1,11 @@
 package com.devspace.partner.service;
 
+import com.devspace.commons.common.exception.MissingMandatoryParamException;
 import com.devspace.partner.domain.*;
-import com.devspace.partner.exception.*;
+import com.devspace.partner.exception.AlreadyInActiveStateException;
+import com.devspace.partner.exception.AlreadyInactiveStateException;
+import com.devspace.partner.exception.PartnerCreationException;
+import com.devspace.partner.exception.PartnerNotFoundException;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
@@ -39,12 +43,19 @@ public class PartnerServiceTest {
         String phoneNumberTwo = "456";
         try {
             partner = partnerService.createPartner(externalId, name, description
-                    , Arrays.asList(phoneNumberOne, phoneNumberTwo));
+                    , Arrays.asList(phoneNumberOne));
         } catch (MissingMandatoryParamException e) {
             fail();
         } catch (PartnerCreationException e) {
             fail();
         }
+
+        try {
+            partner = partnerService.addPhoneNumberToPartner(partner.getId(),phoneNumberTwo);
+        } catch (PartnerNotFoundException e) {
+             fail();
+        }
+
         assertNotNull(partner);
         assertEquals(externalId, partner.getExternalId());
         assertEquals(name, partner.getName());
@@ -100,6 +111,13 @@ public class PartnerServiceTest {
         PartnerBillingAccount partnerBillingAccount = billingAccounts.get(0);
         assertNotNull(partnerBillingAccount);
         assertEquals(billingAccountId, partnerBillingAccount.getBillingAccountId());
+
+        try {
+            partner = partnerService.getPartnerById(partner.getId());
+        } catch (PartnerNotFoundException e) {
+            fail();
+        }
+        assertNotNull(partner);
 
         try {
             partnerService.activatePartner(partner.getId());

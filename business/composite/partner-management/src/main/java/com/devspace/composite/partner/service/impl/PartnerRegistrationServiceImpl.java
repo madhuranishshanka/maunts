@@ -1,11 +1,11 @@
 package com.devspace.composite.partner.service.impl;
 
+import com.devspace.commons.common.exception.MissingMandatoryParamException;
 import com.devspace.composite.partner.dto.LoginAccountDTO;
 import com.devspace.composite.partner.dto.PartnerCompositeDto;
 import com.devspace.composite.partner.dto.PartnerDto;
 import com.devspace.composite.partner.service.PartnerRegistrationService;
 import com.devspace.partner.domain.Partner;
-import com.devspace.partner.exception.MissingMandatoryParamException;
 import com.devspace.partner.exception.PartnerCreationException;
 import com.devspace.partner.exception.PartnerNotFoundException;
 import com.devspace.partner.service.PartnerService;

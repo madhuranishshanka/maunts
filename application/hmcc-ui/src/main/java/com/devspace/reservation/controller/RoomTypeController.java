@@ -5,12 +5,11 @@ import com.devspace.reservation.domain.RoomType;
 import com.devspace.reservation.model.RoomTypeView;
 import com.devspace.reservation.service.RoomService;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
-
-import org.springframework.web.bind.annotation.ModelAttribute;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;

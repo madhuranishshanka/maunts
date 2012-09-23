@@ -1,4 +1,4 @@
-package com.devspace.partner.exception;
+package com.devspace.commons.common.exception;
 
 /**
  * @author Madhura Nishshanka
