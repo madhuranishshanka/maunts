@@ -1,8 +1,9 @@
 package com.devspace.billing.payment.domain;
 
-import com.devspace.billing.accont.domain.Account;
+import com.devspace.billing.account.domain.Account;
 import com.devspace.billing.invoice.domain.Invoice;
 import com.devspace.billing.payment.exceptioin.InvalidPaymentItemException;
+import com.devspace.commons.common.exception.MissingMandatoryParamException;
 import com.devspace.persistence.domain.Entity;
 
 import javax.persistence.OneToMany;
@@ -27,7 +28,11 @@ public class Payment extends Entity {
     public Payment() {
     }
 
-    public Payment(long partnerId, Invoice invoice, Set<PaymentItem> paymentItems) throws InvalidPaymentItemException {
+    public Payment(long partnerId, Invoice invoice, Set<PaymentItem> paymentItems) throws
+            InvalidPaymentItemException, MissingMandatoryParamException {
+        if (invoice == null) {
+            throw new MissingMandatoryParamException("Missing invoice");
+        }
         this.partnerId = partnerId;
         this.invoice = invoice;
         this.paymentItems = paymentItems;
@@ -52,22 +57,6 @@ public class Payment extends Entity {
                 prevPartnerAccount = paymentItem.getPartnerAccount();
                 prevUserAccount = paymentItem.getUserAccount();
                 prevAccounts = true;
-            }
-
-            if (paymentItem.getInvoiceItem() == null) {
-                throw new InvalidPaymentItemException("Invoice item not found");
-            }
-            if (paymentItem.getPartnerAccount() == null) {
-                throw new InvalidPaymentItemException("Partner account not found");
-            }
-            if (paymentItem.getUserAccount() == null) {
-                throw new InvalidPaymentItemException("User account not found");
-            }
-            if (paymentItem.getPaymentAmount() == null) {
-                throw new InvalidPaymentItemException("Payment amount not found");
-            }
-            if (paymentItem.getType() == null) {
-                throw new InvalidPaymentItemException("Payment type not found");
             }
 
             if (!prevUserAccount.equals(paymentItem.getUserAccount())) {

@@ -4,6 +4,7 @@ import com.devspace.billing.invoice.domain.Invoice;
 import com.devspace.billing.invoice.domain.InvoiceItem;
 import com.devspace.billing.invoice.exception.DuplicateInvoiceItemException;
 import com.devspace.billing.invoice.exception.InvoiceNotFoundException;
+import com.devspace.commons.common.exception.MissingMandatoryParamException;
 
 import java.util.List;
 
@@ -13,7 +14,7 @@ import java.util.List;
  */
 public interface InvoiceService {
 
-    Invoice createInvoice(long userId, long orderId, List<InvoiceItem> invoiceItems) throws DuplicateInvoiceItemException;
+    Invoice createInvoice(long userId, long orderId, List<InvoiceItem> invoiceItems) throws DuplicateInvoiceItemException, MissingMandatoryParamException;
 
     void addInvoiceItemToInvoice(long invoiceId, InvoiceItem invoiceItem) throws InvoiceNotFoundException;
 

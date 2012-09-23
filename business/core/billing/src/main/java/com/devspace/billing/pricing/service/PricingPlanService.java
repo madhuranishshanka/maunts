@@ -1,6 +1,6 @@
 package com.devspace.billing.pricing.service;
 
-import com.devspace.commons.common.domain.Amount;
+import com.devspace.billing.common.domain.Amount;
 import com.devspace.commons.common.exception.MissingMandatoryParamException;
 import com.devspace.billing.pricing.domain.PriceTier;
 import com.devspace.billing.pricing.domain.PricingPlan;

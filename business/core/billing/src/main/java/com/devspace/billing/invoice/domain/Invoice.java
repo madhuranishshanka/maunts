@@ -1,7 +1,8 @@
 package com.devspace.billing.invoice.domain;
 
 import com.devspace.billing.payment.domain.Payment;
-import com.devspace.commons.common.domain.Amount;
+import com.devspace.billing.common.domain.Amount;
+import com.devspace.commons.common.exception.MissingMandatoryParamException;
 import com.devspace.persistence.domain.Entity;
 
 import javax.persistence.OneToMany;
@@ -17,7 +18,6 @@ public class Invoice extends Entity {
     private long userId;
     private long orderId;
     private Date invoiceCreatedDate;
-    private Status status;
     @OneToMany
     private Set<InvoiceItem> invoiceItems = new HashSet<InvoiceItem>();
     @OneToMany
@@ -25,18 +25,15 @@ public class Invoice extends Entity {
     private Amount totalGrossAmount;
     private Amount totalNetAmount;
 
-    public enum Status {
-        PAID, NOT_PAID
-    }
-
     public Invoice() {
     }
 
-    public Invoice(long userId, long orderId, Date invoiceCreatedDate, Status status, Set<InvoiceItem> invoiceItems) {
+    public Invoice(long userId, long orderId, Date invoiceCreatedDate, Set<InvoiceItem> invoiceItems) throws
+            MissingMandatoryParamException {
+        validateInvoice(invoiceCreatedDate);
         this.userId = userId;
         this.orderId = orderId;
         this.invoiceCreatedDate = invoiceCreatedDate;
-        this.status = status;
         this.invoiceItems = invoiceItems;
         populateTotals(Collections.list(Collections.enumeration(invoiceItems)));
     }
@@ -44,6 +41,12 @@ public class Invoice extends Entity {
     public void addInvoiceItem(InvoiceItem invoiceItem) {
         this.invoiceItems.add(invoiceItem);
         populateTotals(Arrays.asList(invoiceItem));
+    }
+
+    private void validateInvoice(Date invoiceCreatedDate) throws MissingMandatoryParamException {
+        if(invoiceCreatedDate == null){
+            throw new MissingMandatoryParamException("Missing invoice creation date");
+        }
     }
 
     private void populateTotals(List<InvoiceItem> invoiceItems) {
@@ -72,10 +75,6 @@ public class Invoice extends Entity {
 
     public Date getInvoiceCreatedDate() {
         return invoiceCreatedDate;
-    }
-
-    public Status getStatus() {
-        return status;
     }
 
     public Set<InvoiceItem> getInvoiceItems() {

@@ -9,16 +9,16 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
     <groupId>com.devspace</groupId>
-    <artifactId>partner-management</artifactId>
+    <artifactId>billing-management</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <name>partner-management</name>
+    <name>billing-management</name>
     <packaging>jar</packaging>
 
 
     <dependencies>
         <dependency>
             <groupId>com.devspace</groupId>
-            <artifactId>partner</artifactId>
+            <artifactId>billing</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
     </dependencies>

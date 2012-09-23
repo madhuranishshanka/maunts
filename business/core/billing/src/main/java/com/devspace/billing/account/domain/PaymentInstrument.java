@@ -1,4 +1,4 @@
-package com.devspace.billing.accont.domain;
+package com.devspace.billing.account.domain;
 
 import com.devspace.persistence.domain.Entity;
 

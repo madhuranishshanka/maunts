@@ -1,4 +1,4 @@
-package com.devspace.commons.common.domain;
+package com.devspace.billing.common.domain;
 
 import com.devspace.commons.common.exception.UnitMismatchException;
 

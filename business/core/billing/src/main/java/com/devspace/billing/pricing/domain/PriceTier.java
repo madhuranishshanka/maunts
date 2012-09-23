@@ -1,8 +1,9 @@
 package com.devspace.billing.pricing.domain;
 
-import com.devspace.commons.common.domain.Amount;
+import com.devspace.billing.common.domain.Amount;
+import com.devspace.commons.common.exception.InvalidInputParamException;
+import com.devspace.commons.common.exception.MissingMandatoryParamException;
 import com.devspace.persistence.domain.Entity;
-import com.devspace.billing.pricing.exception.InvalidPriceTierException;
 
 import javax.persistence.Embedded;
 
@@ -27,7 +28,7 @@ public class PriceTier extends Entity {
     }
 
     public PriceTier(double startingUnit, double endingUnit, int index, PriceModel priceModel,
-                     Amount price) throws InvalidPriceTierException {
+                     Amount price) throws MissingMandatoryParamException, InvalidInputParamException {
         validatePriceTier(startingUnit, endingUnit, priceModel, price);
         this.startingUnit = startingUnit;
         this.endingUnit = endingUnit;
@@ -37,18 +38,18 @@ public class PriceTier extends Entity {
     }
 
     private void validatePriceTier(double startingUnit, double endingUnit, PriceModel priceModel,
-                                   Amount price) throws InvalidPriceTierException {
+                                   Amount price) throws MissingMandatoryParamException, InvalidInputParamException {
         if (price == null) {
-            throw new InvalidPriceTierException("Missing price");
+            throw new MissingMandatoryParamException("Missing price");
         }
 
         if (priceModel == null) {
-            throw new InvalidPriceTierException("Missing Price Model");
+            throw new MissingMandatoryParamException("Missing Price Model");
         }
 
 
         if (startingUnit == endingUnit) {
-            throw new InvalidPriceTierException("Invalid starting and ending units");
+            throw new InvalidInputParamException("Invalid starting and ending units");
         }
 
     }

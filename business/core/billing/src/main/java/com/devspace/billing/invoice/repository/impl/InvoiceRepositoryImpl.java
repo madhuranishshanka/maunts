@@ -1,6 +1,6 @@
 package com.devspace.billing.invoice.repository.impl;
 
-import com.devspace.billing.common.repository.impl.BillingBaseRepositoryImpl;
+import com.devspace.billing.common.repository.impl.BaseRepositoryImpl;
 import com.devspace.billing.invoice.domain.Invoice;
 import com.devspace.billing.invoice.repository.InvoiceRepository;
 import org.springframework.stereotype.Repository;
@@ -17,7 +17,7 @@ import java.util.List;
  * @since 1.0
  */
 @Repository("invoiceRepository")
-public class InvoiceRepositoryImpl extends BillingBaseRepositoryImpl<Invoice> implements InvoiceRepository {
+public class InvoiceRepositoryImpl extends BaseRepositoryImpl<Invoice> implements InvoiceRepository {
 
     @Override
     public Class<Invoice> getClassType() {

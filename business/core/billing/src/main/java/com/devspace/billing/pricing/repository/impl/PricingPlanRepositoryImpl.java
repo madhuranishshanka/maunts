@@ -1,6 +1,6 @@
 package com.devspace.billing.pricing.repository.impl;
 
-import com.devspace.billing.common.repository.impl.BillingBaseRepositoryImpl;
+import com.devspace.billing.common.repository.impl.BaseRepositoryImpl;
 import com.devspace.billing.pricing.domain.PricingPlan;
 import com.devspace.billing.pricing.repository.PricingPlanRepository;
 import org.springframework.stereotype.Repository;
@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
  * @since 1.0
  */
 @Repository("pricingPlanRepository")
-public class PricingPlanRepositoryImpl extends BillingBaseRepositoryImpl<PricingPlan> implements PricingPlanRepository{
+public class PricingPlanRepositoryImpl extends BaseRepositoryImpl<PricingPlan> implements PricingPlanRepository{
 
     @Override
     public Class<PricingPlan> getClassType() {

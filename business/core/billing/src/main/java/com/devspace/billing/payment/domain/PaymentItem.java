@@ -1,8 +1,9 @@
 package com.devspace.billing.payment.domain;
 
-import com.devspace.billing.accont.domain.Account;
+import com.devspace.billing.account.domain.Account;
+import com.devspace.billing.common.domain.Amount;
 import com.devspace.billing.invoice.domain.InvoiceItem;
-import com.devspace.commons.common.domain.Amount;
+import com.devspace.commons.common.exception.MissingMandatoryParamException;
 import com.devspace.persistence.domain.Entity;
 
 /**
@@ -18,7 +19,7 @@ public class PaymentItem extends Entity {
     private Account partnerAccount;
     private Type type;
 
-    public enum Type{
+    public enum Type {
         SALES, REFUND, DISCOUNT
     }
 
@@ -26,12 +27,32 @@ public class PaymentItem extends Entity {
     }
 
     public PaymentItem(InvoiceItem invoiceItem, Amount paymentAmount, Account userAccount, Account partnerAccount,
-                       Type type) {
+                       Type type) throws MissingMandatoryParamException {
+        validatePaymentItem(invoiceItem, partnerAccount, userAccount, paymentAmount, type);
         this.invoiceItem = invoiceItem;
         this.paymentAmount = paymentAmount;
         this.userAccount = userAccount;
         this.partnerAccount = partnerAccount;
         this.type = type;
+    }
+
+    private void validatePaymentItem(InvoiceItem invoiceItem, Account partnerAccount, Account userAccount,
+                                     Amount paymentAmount, Type type) throws MissingMandatoryParamException {
+        if (invoiceItem == null) {
+            throw new MissingMandatoryParamException("Invoice item not found");
+        }
+        if (partnerAccount == null) {
+            throw new MissingMandatoryParamException("Partner account not found");
+        }
+        if (userAccount == null) {
+            throw new MissingMandatoryParamException("User account not found");
+        }
+        if (paymentAmount == null) {
+            throw new MissingMandatoryParamException("Payment amount not found");
+        }
+        if (type == null) {
+            throw new MissingMandatoryParamException("Payment type not found");
+        }
     }
 
     public InvoiceItem getInvoiceItem() {

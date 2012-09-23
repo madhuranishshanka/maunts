@@ -10,7 +10,7 @@ import javax.persistence.PersistenceContext;
  * @author Madhura Nishshanka
  * @since 1.0
  */
-public abstract class BillingBaseRepositoryImpl<T extends Entity> extends CrudRepositoryImpl<T>{
+public abstract class BaseRepositoryImpl<T extends Entity> extends CrudRepositoryImpl<T>{
 
 
     @PersistenceContext

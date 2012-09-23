@@ -6,6 +6,7 @@ import com.devspace.billing.invoice.exception.DuplicateInvoiceItemException;
 import com.devspace.billing.invoice.exception.InvoiceNotFoundException;
 import com.devspace.billing.invoice.repository.InvoiceRepository;
 import com.devspace.billing.invoice.service.InvoiceService;
+import com.devspace.commons.common.exception.MissingMandatoryParamException;
 import com.devspace.persistence.exception.EntityNotFoundException;
 import org.springframework.stereotype.Service;
 
@@ -26,14 +27,14 @@ public class InvoiceServiceImpl implements InvoiceService {
     private InvoiceRepository invoiceRepository;
 
     public Invoice createInvoice(long userId, long orderId, List<InvoiceItem> invoiceItems)
-            throws DuplicateInvoiceItemException {
+            throws DuplicateInvoiceItemException, MissingMandatoryParamException {
 
         Set<InvoiceItem> invoiceItemSet = new HashSet<InvoiceItem>(invoiceItems);
         if (invoiceItems.size() != invoiceItemSet.size()) {
             throw new DuplicateInvoiceItemException("Duplicate invoice item found");
         }
         Calendar calendar = Calendar.getInstance();
-        Invoice invoice = new Invoice(userId,orderId, calendar.getTime(), Invoice.Status.NOT_PAID, invoiceItemSet);
+        Invoice invoice = new Invoice(userId,orderId, calendar.getTime(), invoiceItemSet);
 
         invoiceRepository.save(invoice);
 
