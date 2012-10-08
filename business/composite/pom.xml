@@ -16,5 +16,6 @@
   <modules>
     <module>partner-management</module>
     <module>billing-management</module>
+    <module>order-management</module>
   </modules>
 </project>

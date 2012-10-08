@@ -35,12 +35,12 @@ public class Invoice extends Entity {
         this.orderId = orderId;
         this.invoiceCreatedDate = invoiceCreatedDate;
         this.invoiceItems = invoiceItems;
-        populateTotals(Collections.list(Collections.enumeration(invoiceItems)));
+        adjustTotals(Collections.list(Collections.enumeration(invoiceItems)));
     }
 
     public void addInvoiceItem(InvoiceItem invoiceItem) {
         this.invoiceItems.add(invoiceItem);
-        populateTotals(Arrays.asList(invoiceItem));
+        adjustTotals(Arrays.asList(invoiceItem));
     }
 
     private void validateInvoice(Date invoiceCreatedDate) throws MissingMandatoryParamException {
@@ -49,7 +49,7 @@ public class Invoice extends Entity {
         }
     }
 
-    private void populateTotals(List<InvoiceItem> invoiceItems) {
+    private void adjustTotals(List<InvoiceItem> invoiceItems) {
         for (InvoiceItem invoiceItem : invoiceItems) {
 
             Amount grossAmount = invoiceItem.getGrossAmount();

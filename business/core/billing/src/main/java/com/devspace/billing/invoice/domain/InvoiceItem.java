@@ -1,7 +1,8 @@
 package com.devspace.billing.invoice.domain;
 
 import com.devspace.billing.common.domain.Amount;
-import com.devspace.billing.invoice.exception.InvalidInvoiceItemException;
+import com.devspace.commons.common.exception.InvalidInputParamException;
+import com.devspace.commons.common.exception.MissingMandatoryParamException;
 import com.devspace.persistence.domain.Entity;
 
 import java.util.Calendar;
@@ -26,8 +27,9 @@ public class InvoiceItem extends Entity {
     public InvoiceItem() {
     }
 
-    public InvoiceItem(long productId, long orderItemId, String productDisplayName, double quantity, Amount unitPrice,
-                       Amount grossAmount, Amount netAmount) throws InvalidInvoiceItemException {
+    public InvoiceItem(long productId, long orderItemId, String productDisplayName, double quantity,
+                       Amount unitPrice,Amount grossAmount, Amount netAmount) throws MissingMandatoryParamException,
+            InvalidInputParamException {
         validateInvoiceItem(unitPrice, grossAmount, netAmount, quantity);
         this.productId = productId;
         this.productDisplayName = productDisplayName;
@@ -46,18 +48,18 @@ public class InvoiceItem extends Entity {
     }
 
     private void validateInvoiceItem(Amount unitPrice, Amount grossAmount, Amount netAmount,
-                                     double quantity) throws InvalidInvoiceItemException {
+                                     double quantity) throws MissingMandatoryParamException, InvalidInputParamException {
         if (unitPrice == null) {
-            throw new InvalidInvoiceItemException("Missing unit price");
+            throw new MissingMandatoryParamException("Missing unit price");
         }
         if (grossAmount == null) {
-            throw new InvalidInvoiceItemException("Missing gross amount");
+            throw new MissingMandatoryParamException("Missing gross amount");
         }
         if (netAmount == null) {
-            throw new InvalidInvoiceItemException("Missing net amount");
+            throw new MissingMandatoryParamException("Missing net amount");
         }
         if (quantity <= MINIMUM_ALLOWED_QUANTITY) {
-            throw new InvalidInvoiceItemException("Incorrect quantity");
+            throw new InvalidInputParamException("Incorrect quantity");
         }
 
     }

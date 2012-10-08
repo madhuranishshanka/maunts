@@ -18,6 +18,9 @@
         <module>billing</module>
         <module>partner</module>
         <module>commons</module>
+        <module>merchandise</module>
+        <module>order</module>
+        <module>aggregator</module>
     </modules>
 
 
