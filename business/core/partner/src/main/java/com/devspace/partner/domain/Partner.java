@@ -1,6 +1,5 @@
 package com.devspace.partner.domain;
 
-import com.devspace.partner.exception.AlreadyInActiveStateException;
 import com.devspace.partner.exception.AlreadyInactiveStateException;
 import com.devspace.persistence.domain.Entity;
 
@@ -32,10 +31,10 @@ public class Partner extends Entity {
     private List<PartnerLoginAccount> loginAccounts = new ArrayList<PartnerLoginAccount>();
 
 
-    public void activate() throws AlreadyInActiveStateException {
+    public void activate() throws AlreadyInactiveStateException {
 
         if (activationStatus != null && activationStatus.getStatus().equals(ActivationStatus.Status.ACTIVE)) {
-            throw new AlreadyInActiveStateException("Partner Id"+ getId());
+            throw new AlreadyInactiveStateException("Partner Id"+ getId());
         }
         ActivationStatus newActivationStatus = new ActivationStatus();
         newActivationStatus.setStatus(ActivationStatus.Status.ACTIVE);

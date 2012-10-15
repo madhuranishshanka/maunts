@@ -3,7 +3,6 @@ package com.devspace.partner.service;
 import com.devspace.commons.common.exception.MissingMandatoryParamException;
 import com.devspace.partner.domain.Address;
 import com.devspace.partner.domain.Partner;
-import com.devspace.partner.exception.AlreadyInActiveStateException;
 import com.devspace.partner.exception.AlreadyInactiveStateException;
 import com.devspace.partner.exception.PartnerCreationException;
 import com.devspace.partner.exception.PartnerNotFoundException;
@@ -29,7 +28,7 @@ public interface PartnerService {
 
     Partner getPartnerById(long partnerId) throws PartnerNotFoundException;
 
-    void activatePartner(long partnerId) throws PartnerNotFoundException, AlreadyInActiveStateException;
+    void activatePartner(long partnerId) throws PartnerNotFoundException, AlreadyInactiveStateException;
 
     void inactivatePartner(long partnerId) throws PartnerNotFoundException, AlreadyInactiveStateException;
 }

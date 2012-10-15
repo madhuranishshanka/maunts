@@ -2,7 +2,6 @@ package com.devspace.partner.service;
 
 import com.devspace.commons.common.exception.MissingMandatoryParamException;
 import com.devspace.partner.domain.*;
-import com.devspace.partner.exception.AlreadyInActiveStateException;
 import com.devspace.partner.exception.AlreadyInactiveStateException;
 import com.devspace.partner.exception.PartnerCreationException;
 import com.devspace.partner.exception.PartnerNotFoundException;
@@ -124,7 +123,7 @@ public class PartnerServiceTest {
             fail();
         } catch (PartnerNotFoundException e) {
             fail();
-        } catch (AlreadyInActiveStateException e) {
+        } catch (AlreadyInactiveStateException e) {
             assertTrue(true);
         }
 

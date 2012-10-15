@@ -38,7 +38,7 @@ public class PartnerServiceImpl implements PartnerService {
         partner.setDescription(description);
         try {
             partner.activate();
-        } catch (AlreadyInActiveStateException e) {
+        } catch (AlreadyInactiveStateException e) {
             // This should never be reach
             throw new PartnerCreationException(e.getMessage());
         }
@@ -107,7 +107,7 @@ public class PartnerServiceImpl implements PartnerService {
         }
     }
 
-    public void activatePartner(long partnerId) throws PartnerNotFoundException, AlreadyInActiveStateException {
+    public void activatePartner(long partnerId) throws PartnerNotFoundException, AlreadyInactiveStateException {
         try {
             Partner partner = partnerRepository.findById(partnerId);
             partner.activate();
